@@ -1862,6 +1862,20 @@
           } catch (pixelErr) {}
         }
 
+        /* Google Tag Manager: Disparo de evento no dataLayer para GTM / GA4 / Google Ads */
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'generate_lead',
+          event_id: currentEventId,
+          lead_category: 'Black Friday VIP',
+          lead_page: window.location.href,
+          user_data: {
+            email: rawEmail,
+            phone_number: formattedWaE164,
+            address: { country: 'BR' }
+          }
+        });
+
         function revealSuccessState() {
           isRegistered = true;
           if (CONFIG.GROUP_LINK) {
@@ -1919,7 +1933,7 @@
         }
       });
 
-      /* 7. Clique no botão do Grupo do WhatsApp → Evento Custom JoinGroupClick */
+      /* 7. Clique no botão do Grupo do WhatsApp → Evento Custom JoinGroupClick e dataLayer */
       btnGroup.addEventListener('click', function (e) {
         if (!isRegistered) {
           e.preventDefault();
@@ -1934,6 +1948,12 @@
             });
           } catch (err) {}
         }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'join_group_click',
+          event_id: currentEventId,
+          content_name: 'Grupo VIP WhatsApp Black Yoha'
+        });
       });
 
       /* 8. Rolagem suave para o formulário e foco no campo Nome */
