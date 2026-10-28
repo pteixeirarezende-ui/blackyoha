@@ -213,7 +213,7 @@ a {
 .y-brand-img {
   height: 28px;
   width: auto;
-  filter: invert(1) brightness(0.95);
+  display: block;
 }
 
 /* Títulos: Rebond Grotesque Bold/Extrabold, caixa alta, cor Creme (#F3F1E8 / #EFE4CE) */

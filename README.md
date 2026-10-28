@@ -23,3 +23,4 @@ Landing Page mobile-first de captação de leads para a **Black Yoha (Black Frid
   - Meta Pixel configurado (`PageView`, `Lead` com Advanced Matching + EventID, e `JoinGroupClick`).
   - Coleta dinâmica de UTMs (`utm_source`, `utm_campaign`, etc.) e IDs (`fbclid`, `campaign_id`, etc.).
   - Integração por Webhook para automações (n8n, CRM, planilhas).
+
