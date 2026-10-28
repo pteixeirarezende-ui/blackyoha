@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0E0C0A">
+<title>yoha — Design System &amp; Catálogo Oficial (Inspirado em vivayoha.com.br)</title>
+<link rel="icon" href="https://vivayoha.com.br/cdn/shop/files/16X16.jpg?crop=center&amp;height=32&amp;v=1758230833&amp;width=32">
+<link rel="stylesheet" href="css/yoha-ds.css">
+<style>
+/* ==========================================================================
+   SHELL DO CATÁLOGO DE DESIGN SYSTEM (ESTÉTICA VIVAYOHA.COM.BR — SEM LARANJA)
+   ========================================================================== */
+:root {
+  --ds-nav-h: 68px;
+  --ds-side-w: 264px;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Topbar do Catálogo */
+#ds-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--ds-nav-h);
+  z-index: 60;
+  background: rgba(14, 12, 10, 0.92);
+  -webkit-backdrop-filter: blur(16px) saturate(1.1);
+  backdrop-filter: blur(16px) saturate(1.1);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 clamp(16px, 3vw, 36px);
+  gap: 16px;
+}
+
+.ds-nav__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ds-nav__brand .y-brand {
+  font-size: 30px;
+}
+
+.ds-nav__badge {
+  padding: 5px 12px;
+  border-radius: var(--radius-chip);
+  background: rgba(231, 211, 176, 0.10);
+  border: 1px solid var(--copper-border);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.ds-nav__tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-chip);
+}
+
+.ds-nav__tab {
+  padding: 8px 18px;
+  border-radius: var(--radius-chip);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+}
+
+.ds-nav__tab:hover {
+  color: var(--cream);
+}
+
+.ds-nav__tab.is-active {
+  background: var(--copper);
+  color: #120E0B;
+}
+
+.ds-nav__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+
+#ds-progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--bronze) 0%, var(--copper) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.08s linear;
+  z-index: 2;
+}
+
+/* Layout Principal: Sidebar + Palco de Componentes */
+#view-components {
+  position: fixed;
+  top: var(--ds-nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: var(--ds-side-w) minmax(0, 1fr);
+  z-index: 10;
+}
+
+body.is-overview #view-components {
+  display: none;
+}
+
+#view-overview {
+  position: fixed;
+  top: var(--ds-nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  overflow-y: auto;
+  padding: 36px clamp(16px, 4vw, 48px) 100px;
+  z-index: 10;
+}
+
+body.is-overview #view-overview {
+  display: block;
+}
+
+/* Sidebar de Navegação */
+#ds-side {
+  overflow-y: auto;
+  padding: 28px 16px 48px 24px;
+  background: rgba(14, 12, 10, 0.96);
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.ds-side__group-lbl {
+  margin: 16px 0 6px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+#ds-side a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  transition: all 0.2s ease;
+}
+
+#ds-side a b {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted-2);
+  font-variant-numeric: tabular-nums;
+}
+
+#ds-side a:hover {
+  color: var(--cream);
+  background: rgba(231, 211, 176, 0.06);
+}
+
+#ds-side a.is-current {
+  background: var(--cream-2);
+  color: #14110E;
+  font-weight: 600;
+}
+
+#ds-side a.is-current b {
+  color: var(--copper-deep);
+}
+
+/* Palco Principal (#ds-main) */
+#ds-main {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 48px clamp(20px, 4vw, 64px) 160px;
+  scroll-behavior: smooth;
+}
+
+#ds-main > * {
+  max-width: 1120px;
+}
+
+/* Seções do Catálogo (.ds-group) */
+.ds-group {
+  padding-bottom: 96px;
+  scroll-margin-top: 28px;
+}
+
+.ds-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--line);
+}
+
+.ds-head__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 0.98;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.ds-sub {
+  margin: 40px 0 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--copper-hi);
+}
+
+.ds-head + .ds-sub {
+  margin-top: 0;
+}
+
+.ds-spec {
+  margin: 0 0 48px;
+}
+
+.ds-spec:last-child {
+  margin-bottom: 0;
+}
+
+.ds-spec > h3 {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ds-stage {
+  background: rgba(18, 15, 13, 0.72);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: clamp(20px, 3vw, 32px);
+  position: relative;
+}
+
+.ds-meta {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted-2);
+  overflow-wrap: anywhere;
+}
+
+.ds-meta b {
+  color: var(--copper);
+  font-weight: 600;
+}
+
+.ds-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 28px;
+}
+
+.ds-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.ds-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.ds-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.ds-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ds-cell > small {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+/* 01. Tabela de Tipografia */
+.ds-type {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr) 210px;
+  gap: 28px;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.ds-type:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.ds-type .role {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.ds-type .face {
+  margin-top: 4px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.ds-type .face code {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--copper);
+}
+
+.ds-type .sample {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.ds-type .sizes {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* 02. Swatches de Cores */
+.ds-colors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 20px;
+}
+
+.ds-sw {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ds-sw:hover {
+  border-color: var(--copper);
+  transform: translateY(-2px);
+}
+
+.ds-chip {
+  position: relative;
+  height: 78px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px rgba(243, 241, 232, 0.12);
+}
+
+.ds-chip .aa {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.ds-sw strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.ds-sw code {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--copper);
+}
+
+.ds-sw code.hex {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.ds-sw p {
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Estados Interativos */
+.ds-states {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  gap: 16px;
+}
+
+.ds-state-box {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ds-state-box small {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--copper);
+}
+
+.ds-state-box code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+}
+
+/* 05. Grade de Ícones */
+.ds-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 16px;
+}
+
+.ds-icon-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.ds-icon-card code {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Simulador Mobile (360px - 430px) */
+.ds-phone-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.ds-phone-stage {
+  display: flex;
+  justify-content: center;
+  padding: 28px 12px;
+  background: radial-gradient(700px 420px at 50% 0%, rgba(158, 131, 86, 0.14), transparent 70%), #080706;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+}
+
+.ds-phone-frame {
+  width: 390px;
+  max-width: 100%;
+  background-color: var(--bg);
+  background-image: var(--hero-radial-glow);
+  border: 6px solid #231F20;
+  border-radius: 40px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--copper-border);
+  overflow: hidden;
+  transition: width 0.35s var(--ease-out-expo);
+}
+
+.ds-phone-notch {
+  height: 28px;
+  background: #0A0908;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.ds-phone-notch span {
+  width: 86px;
+  height: 6px;
+  border-radius: 99px;
+  background: #231F20;
+}
+
+.ds-phone-body {
+  padding: 20px 18px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Toast de cópia de token */
+#ds-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  background: var(--cream-2);
+  border: 1px solid var(--copper);
+  color: #120E0B;
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-copper);
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s var(--ease-out-expo);
+}
+
+#ds-toast.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Responsividade do Catálogo */
+@media (max-width: 980px) {
+  .ds-type {
+    grid-template-columns: 170px minmax(0, 1fr);
+  }
+  .ds-type .sizes {
+    grid-column: 2;
+    text-align: left;
+  }
+  .ds-grid-2, .ds-grid-3, .ds-grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ds-nav__meta {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  #view-components {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  #ds-side {
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 14px;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .ds-side__group-lbl {
+    display: none;
+  }
+  #ds-side a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+  #ds-main {
+    padding: 28px 16px 120px;
+  }
+  .ds-type, .ds-grid-2, .ds-grid-3, .ds-grid-4 {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .ds-type .sizes {
+    grid-column: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ======================================================================
+     TOPBAR DO DESIGN SYSTEM (WORDMARK OFICIAL YOHA LIMPA)
+     ====================================================================== -->
+<header id="ds-nav">
+  <div class="ds-nav__brand">
+    <a href="#components" class="y-brand" aria-label="yoha">yoha</a>
+    <span class="ds-nav__badge">vivayoha.com.br · Black DS</span>
+  </div>
+
+  <nav class="ds-nav__tabs" aria-label="Modos de visualização">
+    <button type="button" class="ds-nav__tab is-active" id="tab-components" data-view="components">Catálogo (13 Seções)</button>
+    <button type="button" class="ds-nav__tab" id="tab-overview" data-view="overview">Simulador Mobile (360–430px)</button>
+  </nav>
+
+  <div class="ds-nav__meta">
+    <span class="y-dot-live"></span>
+    <span>Carbono · Creme Champagne · Bronze Yoha</span>
+  </div>
+
+  <i id="ds-progress" aria-hidden="true"></i>
+</header>
+
+<!-- ======================================================================
+     VIEW 1: CATÁLOGO COMPLETO DE TOKENS E COMPONENTES
+     ====================================================================== -->
+<div id="view-components">
+  <aside id="ds-side" aria-label="Índice do Design System">
+    <div class="ds-side__group-lbl">Fundações Yoha</div>
+    <a href="#ds-typography" class="is-current"><b>01</b>Tipografia (Rebond + Poppins)</a>
+    <a href="#ds-colors"><b>02</b>Cores &amp; Paleta do Site</a>
+    <a href="#ds-backgrounds"><b>03</b>Fundos &amp; Atmosfera</a>
+    <a href="#ds-surfaces"><b>04</b>Superfícies, Selos &amp; Raios</a>
+    <a href="#ds-icons"><b>05</b>Ícones &amp; Chips</a>
+    <a href="#ds-motion"><b>06</b>Motion &amp; Transições</a>
+
+    <div class="ds-side__group-lbl">Componentes LP</div>
+    <a href="#ds-actions"><b>07</b>Botões &amp; CTAs</a>
+    <a href="#ds-navigation"><b>08</b>Header &amp; Marquee</a>
+    <a href="#ds-forms"><b>09</b>Formulários &amp; Fluxo VIP</a>
+    <a href="#ds-cards"><b>10</b>Produtos &amp; Benefícios</a>
+    <a href="#ds-data"><b>11</b>Countdown &amp; Lotes</a>
+    <a href="#ds-faq"><b>12</b>FAQ &amp; Disclosure</a>
+    <a href="#ds-mobile"><b>13</b>Diretrizes 360–430px</a>
+  </aside>
+
+  <main id="ds-main">
+
+    <!-- HERO BANNER DE APRESENTAÇÃO DO DESIGN SYSTEM (INSPIRADO NO BANNER OFICIAL YOHA WHEY) -->
+    <div class="y-card y-card--glow" style="margin-bottom: 56px; padding: clamp(24px, 4vw, 44px);">
+      <div style="display:grid; grid-template-columns: 1.25fr 0.75fr; gap: 32px; align-items:center;" class="ds-grid-2">
+        <div>
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:18px;">
+            <span class="y-chip"><span class="y-dot-live"></span> Estética Oficial vivayoha.com.br</span>
+            <span class="y-chip y-chip--cream">Zero Laranja · Champagne &amp; Cacau</span>
+          </div>
+          <div class="y-brand" style="font-size: 38px; margin-bottom: 10px;">yoha</div>
+          <h1 class="y-h1" style="margin-bottom: 14px;">BLACK YOHA<br><span class="y-text-copper">LISTA VIP OFICIAL</span></h1>
+          <p class="y-lead" style="max-width: 58ch; margin-bottom: 24px;">
+            Recalibrado diretamente a partir do código e das embalagens de <strong class="y-text-cream">vivayoha.com.br</strong>: fundo carbono/cacau escuro (<code>#0E0C0A</code>), tipografia oficial <strong class="y-text-cream">Rebond Grotesque + Poppins</strong> em creme baunilha (<code>#F3F1E8</code> / <code>#EFE4CE</code>), selos champagne (<code>#E7D3B0</code>) e bronze fosco das tampas Yoha (<code>#9E8356</code>).
+          </p>
+          <!-- Selo Duplo igual ao Banner YOHA WHEY (PROTEÍNA 23g | BCAA'S 3,0g) -->
+          <div class="y-stat-pair">
+            <div class="y-stat-box y-stat-box--filled">
+              <span class="y-stat-box__kicker">DESCONTOS DE ATÉ</span>
+              <span class="y-stat-box__val">60% OFF</span>
+            </div>
+            <div class="y-stat-box y-stat-box--outline">
+              <span class="y-stat-box__kicker">ACESSO NO GRUPO</span>
+              <span class="y-stat-box__val">1H ANTES</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:center;">
+          <img src="https://vivayoha.com.br/cdn/shop/files/MOBILE-WHEY.jpg?v=1784571853&amp;width=390" alt="Banner Oficial Yoha Whey" style="max-height:360px; width:auto; border-radius:18px; border:1px solid var(--copper-border); box-shadow: 0 20px 50px rgba(0,0,0,0.7);">
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================================
+         01. TIPOGRAFIA
+         ================================================================== -->
+    <section class="ds-group" id="ds-typography">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Fundações · 01</span>
+          <h2 class="ds-head__title">Tipografia Oficial</h2>
+        </div>
+        <span class="y-caption">Rebond Grotesque (CDN vivayoha.com.br) · Poppins / DM Sans</span>
+      </div>
+
+      <div class="ds-type">
+        <div>
+          <div class="role">Wordmark · Logo Yoha</div>
+          <div class="face">Rebond Grotesque · 800 · lowercase · limpa<code>.y-brand</code></div>
+        </div>
+        <div class="sample" style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+          <span class="y-brand" style="font-size: clamp(44px, 7vw, 64px);">yoha</span>
+          <img src="https://vivayoha.com.br/cdn/shop/files/yoha-logo_1_b69a1d1f-5832-4e27-8a92-819e67abf6e0.png?v=1758122543&amp;width=148" alt="Logo Yoha" class="y-brand-img" style="height:36px;">
+        </div>
+        <div class="sizes">minúsculas | sem ponto<br>cor --cream (#F3F1E8)</div>
+      </div>
+
+      <div class="ds-type">
+        <div>
+          <div class="role">H1 · Hero Display</div>
+          <div class="face">Rebond Grotesque · 800 · UPPERCASE · lh 1.02<code>.y-h1 / .y-display</code></div>
+        </div>
+        <div class="sample">
+          <h1 class="y-h1">YOHA WHEY &amp; <span class="y-text-copper">BLACK VIP</span></h1>
+        </div>
+        <div class="sizes">clamp(34px, 10.5vw, 48px)<br>lh 1.02 | +0.5px</div>
+      </div>
+
+      <div class="ds-type">
+        <div>
+          <div class="role">H2 · Título de Seção</div>
+          <div class="face">Rebond Grotesque · 800 · UPPERCASE · lh 1.06<code>.y-h2</code></div>
+        </div>
+        <div class="sample">
+          <h2 class="y-h2">VIVA SUA MELHOR VERSÃO NA BLACK YOHA</h2>
+        </div>
+        <div class="sizes">clamp(26px, 7.5vw, 36px)<br>lh 1.06 | +0.4px</div>
+      </div>
+
+      <div class="ds-type">
+        <div>
+          <div class="role">H3 · Subtítulo / Card</div>
+          <div class="face">Rebond Grotesque · 800 · UPPERCASE · lh 1.12<code>.y-h3</code></div>
+        </div>
+        <div class="sample">
+          <h3 class="y-h3">PROTEÍNA DE ALTA QUALIDADE &amp; FÓRMULAS LIMPAS</h3>
+        </div>
+        <div class="sizes">clamp(20px, 5.2vw, 24px)<br>lh 1.12 | +0.3px</div>
+      </div>
+
+      <div class="ds-type">
+        <div>
+          <div class="role">Rótulo Pequeno · Eyebrow</div>
+          <div class="face">Poppins · 600 · UPPERCASE · tracking 2px · --copper-hi<code>.y-label</code></div>
+        </div>
+        <div class="sample">
+          <span class="y-label"><span class="y-dot-live"></span> LISTA VIP SILENCIOSA · ACESSO 1H ANTES</span>
+        </div>
+        <div class="sizes">12px<br>tracking 2px | #C8B28E</div>
+      </div>
+
+      <div class="ds-type">
+        <div>
+          <div class="role">Body · Texto Padrão</div>
+          <div class="face">Poppins · 400 &amp; 600 · lh 1.6 · --muted / --cream<code>.y-body</code></div>
+        </div>
+        <div class="sample">
+          <p class="y-body">Suplementos premium que unem <strong class="y-body-strong">ciência, natureza e design</strong> para você viver com equilíbrio, energia e beleza. Descontos liberados primeiro no Grupo VIP do WhatsApp.</p>
+        </div>
+        <div class="sizes">14.5px<br>lh 1.6 | #B8AFA2</div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         02. CORES E TOKENS (SEM LARANJA — PALETA REAL DO SITE)
+         ================================================================== -->
+    <section class="ds-group" id="ds-colors">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Fundações · 02</span>
+          <h2 class="ds-head__title">Cores &amp; Tokens (Pegada Oficial Yoha)</h2>
+        </div>
+        <span class="y-caption">Clique em qualquer card para copiar o token CSS</span>
+      </div>
+
+      <p class="ds-sub">Fundos Escuros (Carbono, Grafite Quente e Cacau Profundo)</p>
+      <div class="ds-colors">
+        <div class="ds-sw" data-copy="var(--bg)">
+          <span class="ds-chip" style="background:#0E0C0A"><span class="aa" style="color:var(--cream)">Bg</span></span>
+          <div><strong>Fundo Principal</strong><code>--bg</code><code class="hex">#0E0C0A</code><p>Carbono/cacau quase preto (sem tom avermelhado/laranja).</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--surface)">
+          <span class="ds-chip" style="background:#171411"><span class="aa" style="color:var(--cream)">Sf</span></span>
+          <div><strong>Superfície Card</strong><code>--surface</code><code class="hex">#171411</code><p>Cards de benefícios, produtos e módulos.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--surface-2)">
+          <span class="ds-chip" style="background:#120F0D"><span class="aa" style="color:var(--muted)">In</span></span>
+          <div><strong>Superfície 2 (Inputs)</strong><code>--surface-2</code><code class="hex">#120F0D</code><p>Campos de formulário, contadores e ticker.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--line)">
+          <span class="ds-chip" style="background:#0E0C0A"><span style="width:75%;height:2px;background:#2B2520;box-shadow:0 12px 0 #2B2520, 0 -12px 0 #2B2520"></span></span>
+          <div><strong>Bordas &amp; Divisórias</strong><code>--line</code><code class="hex">#2B2520</code><p>Contornos discretos e divisórias.</p></div>
+        </div>
+      </div>
+
+      <p class="ds-sub">Creme Champagne, Tampas Bronze e Cacau Yoha (No lugar do laranja)</p>
+      <div class="ds-colors">
+        <div class="ds-sw" data-copy="var(--copper)">
+          <span class="ds-chip" style="background:#E7D3B0"><span class="aa" style="color:#120E0B">Ch</span></span>
+          <div><strong>Champagne Yoha</strong><code>--copper</code><code class="hex">#E7D3B0</code><p>Cor oficial do countdown da loja e botão principal VIP.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--copper-hi)">
+          <span class="ds-chip" style="background:#0E0C0A"><span class="aa" style="color:#C8B28E">Ar</span></span>
+          <div><strong>Areia Dourada</strong><code>--copper-hi</code><code class="hex">#C8B28E</code><p>Rótulos pequenos, ícones e subtítulos de destaque.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--bronze)">
+          <span class="ds-chip" style="background:#9E8356"><span class="aa" style="color:#FFFFFF">Bz</span></span>
+          <div><strong>Bronze Tampa Yoha</strong><code>--bronze</code><code class="hex">#9E8356</code><p>Dourado fosco extraído das tampas dos potes de Whey.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--copper-deep)">
+          <span class="ds-chip" style="background:#EFE4CE"><span class="aa" style="color:#5A432E">Ca</span></span>
+          <div><strong>Marrom Cacau Yoha</strong><code>--copper-deep</code><code class="hex">#5A432E</code><p>Texto de destaque sobre fundo creme claro (igual banner encapsulados).</p></div>
+        </div>
+      </div>
+
+      <p class="ds-sub">Off-White, Creme Pote Yoha e Semânticas</p>
+      <div class="ds-colors">
+        <div class="ds-sw" data-copy="var(--cream)">
+          <span class="ds-chip" style="background:#0E0C0A"><span class="aa" style="color:#F3F1E8">Aa</span></span>
+          <div><strong>Off-White Oficial</strong><code>--cream</code><code class="hex">#F3F1E8</code><p>Token --off-white oficial de vivayoha.com.br para títulos e textos.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--cream-2)">
+          <span class="ds-chip" style="background:#EFE4CE"><span class="aa" style="color:#231F20">Cr</span></span>
+          <div><strong>Creme Baunilha (Pote)</strong><code>--cream-2</code><code class="hex">#EFE4CE</code><p>Cor do pote da Yoha e dos blocos preenchidos de destaque.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--ok)">
+          <span class="ds-chip" style="background:rgba(127,183,126,0.15)"><span class="aa" style="color:#7FB77E">✓</span></span>
+          <div><strong>Sucesso</strong><code>--ok</code><code class="hex">#7FB77E</code><p>Confirmação de etapa concluída.</p></div>
+        </div>
+        <div class="ds-sw" data-copy="var(--wa)">
+          <span class="ds-chip" style="background:#25D366"><span class="aa" style="color:#FFFFFF">WA</span></span>
+          <div><strong>WhatsApp VIP</strong><code>--wa</code><code class="hex">#25D366</code><p>Exclusivo para o botão "Entrar no grupo do WhatsApp".</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         03. FUNDOS & ATMOSFERA
+         ================================================================== -->
+    <section class="ds-group" id="ds-backgrounds">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Fundações · 03</span>
+          <h2 class="ds-head__title">Fundos &amp; Atmosfera</h2>
+        </div>
+        <span class="y-caption">Vinheta bronze/champagne sutil sobre carbono #0E0C0A</span>
+      </div>
+
+      <div class="ds-grid-2">
+        <div class="ds-spec">
+          <h3>Atmosfera Escura (Estilo Banner Yoha Whey)</h3>
+          <div style="height: 240px; border-radius: var(--radius-card); border: 1px solid var(--line); background-color: var(--bg); background-image: var(--hero-radial-glow); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px;">
+            <span class="y-brand" style="font-size:28px; margin-bottom:8px;">yoha</span>
+            <p class="y-h3">LUZ CHAMPAGNE &amp; CACAU</p>
+            <p class="y-caption" style="margin-top:6px;">Sem alaranjado — tom neutro sofisticado de suplemento premium</p>
+          </div>
+          <code class="ds-meta"><b>--hero-radial-glow</b> radial-gradient(880px 500px at 50% -6%, rgba(158,131,86,.22), transparent 72%)</code>
+        </div>
+
+        <div class="ds-spec">
+          <h3>Superfície Creme Editorial (Estilo Banner Encapsulados)</h3>
+          <div class="y-card y-card--cream" style="height: 240px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+            <span class="y-brand" style="font-size:28px; color:var(--copper-deep); margin-bottom:8px;">yoha</span>
+            <p class="y-h3" style="color:var(--copper-deep);">CONTRASTE CREME &amp; CACAU</p>
+            <p class="y-body" style="max-width:36ch; margin-top:6px;">Fundo <code>#EFE4CE</code> com tipografia em <code>#5A432E</code>, idêntico às artes de produtos da Yoha.</p>
+          </div>
+          <code class="ds-meta"><b>.y-card--cream</b> background: #EFE4CE · color: #5A432E</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         04. SUPERFÍCIES, SELOS DUPLOS & RAIOS
+         ================================================================== -->
+    <section class="ds-group" id="ds-surfaces">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Fundações · 04</span>
+          <h2 class="ds-head__title">Selos Yoha, Formas &amp; Raios</h2>
+        </div>
+        <span class="y-caption">Cards 20px · Botões 14px / Pill 100px · Campos 12px · Chips 999px</span>
+      </div>
+
+      <div class="ds-spec">
+        <h3>Selo Duplo Oficial (Extraído do Banner Yoha Whey)</h3>
+        <div class="ds-stage">
+          <div class="ds-row" style="gap:36px;">
+            <div>
+              <small style="display:block; margin-bottom:10px; color:var(--muted-2); font-family:var(--font-mono); font-size:11px;">ORIGINAL DO BANNER WHEY</small>
+              <div class="y-stat-pair">
+                <div class="y-stat-box y-stat-box--filled">
+                  <span class="y-stat-box__kicker">PROTEÍNA</span>
+                  <span class="y-stat-box__val">23g</span>
+                </div>
+                <div class="y-stat-box y-stat-box--outline">
+                  <span class="y-stat-box__kicker">BCAA'S</span>
+                  <span class="y-stat-box__val">3,0g</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <small style="display:block; margin-bottom:10px; color:var(--muted-2); font-family:var(--font-mono); font-size:11px;">ADAPTADO PARA A LP BLACK YOHA</small>
+              <div class="y-stat-pair">
+                <div class="y-stat-box y-stat-box--filled">
+                  <span class="y-stat-box__kicker">ATÉ</span>
+                  <span class="y-stat-box__val">60% OFF</span>
+                </div>
+                <div class="y-stat-box y-stat-box--outline">
+                  <span class="y-stat-box__kicker">ACESSO VIP</span>
+                  <span class="y-stat-box__val">1H ANTES</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <code class="ds-meta"><b>.y-stat-pair</b> &gt; <b>.y-stat-box--filled</b> (#EFE4CE / #24160E) + <b>.y-stat-box--outline</b> (1.5px solid #EFE4CE)</code>
+      </div>
+
+      <div class="ds-spec">
+        <h3>Escala Oficial de Border-Radius</h3>
+        <div class="ds-states">
+          <div class="ds-state-box">
+            <div style="height:72px; background:var(--surface); border:1.5px solid var(--copper); border-radius:20px; display:grid; place-items:center; font-family:var(--font-display); font-weight:800;">20 px</div>
+            <small>Cards (.y-card)</small>
+            <code>--radius-card: 20px</code>
+          </div>
+          <div class="ds-state-box">
+            <div style="height:58px; background:var(--copper); color:#120E0B; border-radius:14px; display:grid; place-items:center; font-family:var(--font-display); font-weight:800;">14 px · min-h 58px</div>
+            <small>Botões (.y-btn)</small>
+            <code>--radius-btn: 14px</code>
+          </div>
+          <div class="ds-state-box">
+            <div style="height:54px; background:var(--surface-2); border:1.5px solid var(--line); border-radius:12px; display:grid; place-items:center; font-family:var(--font-display); font-weight:800;">12 px · min-h 54px</div>
+            <small>Campos (.y-input)</small>
+            <code>--radius-input: 12px</code>
+          </div>
+          <div class="ds-state-box">
+            <div style="height:40px; padding:0 20px; background:var(--cream-2); color:#120E0B; border-radius:999px; display:grid; place-items:center; font-family:var(--font-display); font-weight:800;">999 px</div>
+            <small>Chips (.y-chip)</small>
+            <code>--radius-chip: 999px</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         05. ÍCONES & CHIPS
+         ================================================================== -->
+    <section class="ds-group" id="ds-icons">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Fundações · 05</span>
+          <h2 class="ds-head__title">Ícones &amp; Chips</h2>
+        </div>
+        <span class="y-caption">Ícones em Champagne (#E7D3B0) sobre fundo escuro</span>
+      </div>
+
+      <div class="ds-spec">
+        <div class="ds-icons">
+          <div class="ds-icon-card">
+            <div class="y-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <code>flash-vip</code>
+          </div>
+          <div class="ds-icon-card">
+            <div class="y-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <code>lock-secret</code>
+          </div>
+          <div class="ds-icon-card">
+            <div class="y-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            </div>
+            <code>tag-discount</code>
+          </div>
+          <div class="ds-icon-card">
+            <div class="y-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <code>clock-1h</code>
+          </div>
+          <div class="ds-icon-card">
+            <div class="y-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <code>shield-pureza</code>
+          </div>
+          <div class="ds-icon-card">
+            <div class="y-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>
+            </div>
+            <code>gift-brinde</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-spec">
+        <h3>Chips &amp; Tags</h3>
+        <div class="ds-stage">
+          <div class="ds-row" style="gap:12px;">
+            <span class="y-chip"><span class="y-dot-live"></span> LISTA VIP ABERTA</span>
+            <span class="y-chip y-chip--cream">1º LOTE · ATÉ 60% OFF</span>
+            <span class="y-chip y-chip--dark-tag">-40% OFF</span>
+            <span class="y-chip y-chip--surface">WHEY &amp; CREATINA</span>
+            <span class="y-chip y-chip--ok"><span class="y-dot-live y-dot-live--ok"></span> CADASTRO CONFIRMADO</span>
+            <span class="y-chip y-chip--wa"><span class="y-dot-live y-dot-live--wa"></span> GRUPO VIP WHATSAPP</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         06. MOTION & TRANSIÇÕES
+         ================================================================== -->
+    <section class="ds-group" id="ds-motion">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Fundações · 06</span>
+          <h2 class="ds-head__title">Motion &amp; Micro-interações</h2>
+        </div>
+        <span class="y-caption">Transições fluidas para dispositivos móveis</span>
+      </div>
+
+      <div class="ds-spec">
+        <div class="ds-stage">
+          <div style="display:flex; flex-direction:column; gap:10px; max-width:540px;">
+            <span class="y-label y-reveal is-in" data-reveal-item>VIVA SUA MELHOR VERSÃO</span>
+            <h3 class="y-h2 y-reveal is-in" data-reveal-item style="transition-delay:80ms">CIÊNCIA, NATUREZA E PERFORMANCE</h3>
+            <p class="y-body y-reveal is-in" data-reveal-item style="transition-delay:160ms">Entrada suave com curva exponencial <code>cubic-bezier(0.16, 1, 0.3, 1)</code>.</p>
+          </div>
+          <button type="button" class="y-btn y-btn--ghost" id="btn-replay-motion" style="margin-top:18px;">↻ Reproduzir Animação</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         07. BOTÕES & CTAs (ACTIONS)
+         ================================================================== -->
+    <section class="ds-group" id="ds-actions">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 07</span>
+          <h2 class="ds-head__title">Botões &amp; CTAs</h2>
+        </div>
+        <span class="y-caption">Champagne Yoha (#E7D3B0) com texto escuro + Verde WhatsApp (#25D366)</span>
+      </div>
+
+      <div class="ds-spec">
+        <h3>Botões Principais de Conversão (Altura Mínima 58px)</h3>
+        <div class="ds-stage">
+          <div class="ds-grid-2">
+            <div class="ds-cell" style="width:100%">
+              <small>1. CTA Principal (Etapa 1 — Captação)</small>
+              <button type="button" class="y-btn y-btn--primary y-btn--full">
+                <span>QUERO ENTRAR NA LISTA VIP</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+              <code class="ds-meta"><b>.y-btn--primary</b> bg var(--copper) #E7D3B0 · texto #120E0B · Rebond Grotesque 800 · min-h 58px</code>
+            </div>
+
+            <div class="ds-cell" style="width:100%">
+              <small>2. CTA Exclusivo WhatsApp (Etapa 2 — Pós-Cadastro)</small>
+              <button type="button" class="y-btn y-btn--wa-white y-btn--full">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.529 5.856l-1.529 5.584 5.716-1.499c1.685.918 3.615 1.443 5.669 1.443 6.627 0 12-5.373 12-12s-5.373-12-12.385-11.384z"/></svg>
+                <span>ENTRAR NO GRUPO DO WHATSAPP</span>
+              </button>
+              <code class="ds-meta"><b>.y-btn--wa-white</b> bg var(--wa) #25D366 (restrito ao botão do grupo)</code>
+            </div>
+          </div>
+
+          <div class="ds-row" style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line);">
+            <div class="ds-cell">
+              <small>Outline Estilo Banner (.y-btn--secondary)</small>
+              <button type="button" class="y-btn y-btn--secondary">APROVEITE JÁ · LISTA VIP</button>
+            </div>
+            <div class="ds-cell">
+              <small>Pill Arredondado Loja (.y-btn--pill)</small>
+              <button type="button" class="y-btn y-btn--secondary y-btn--pill">VER FAVORITOS YOHA</button>
+            </div>
+            <div class="ds-cell">
+              <small>Loading</small>
+              <button type="button" class="y-btn y-btn--primary is-loading"><span class="y-spinner"></span> LIBERANDO VAGA...</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         08. NAVEGAÇÃO, HEADER & MARQUEE TICKER
+         ================================================================== -->
+    <section class="ds-group" id="ds-navigation">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 08</span>
+          <h2 class="ds-head__title">Header Mobile &amp; Marquee</h2>
+        </div>
+        <span class="y-caption">Barra de anúncio #231F20 + Header limpo com logo yoha</span>
+      </div>
+
+      <div class="ds-spec">
+        <div class="ds-stage" style="padding:0; overflow:hidden;">
+          <div style="background:#231F20; color:#F3F1E8; text-align:center; padding:8px 14px; font-size:12px; font-weight:500; border-bottom:1px solid var(--line);">
+            🔥 <strong>BLACK YOHA</strong> · Cadastre-se na Lista VIP e receba o link 1h antes no WhatsApp
+          </div>
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 22px; background:rgba(14,12,10,0.95); border-bottom:1px solid var(--line);">
+            <span class="y-brand" style="font-size:28px;">yoha</span>
+            <span class="y-chip"><span class="y-dot-live"></span> LISTA VIP OFICIAL</span>
+          </div>
+          <div class="y-ticker" style="border-bottom:0;">
+            <div class="y-ticker__track">
+              <span class="y-ticker__item"><b>100% WHEY PROTEIN</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>CREATINA GOURMET</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>BIOTINA MORANGO</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>ÁCIDO HIALURÔNICO</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>COLÁGENO + VITAMINAS</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>CABELO, PELE E UNHA</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>100% WHEY PROTEIN</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>CREATINA GOURMET</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>BIOTINA MORANGO</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>ÁCIDO HIALURÔNICO</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>COLÁGENO + VITAMINAS</b> <span class="y-ticker__sep">•</span></span>
+              <span class="y-ticker__item"><b>CABELO, PELE E UNHA</b> <span class="y-ticker__sep">•</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         09. FORMULÁRIOS & FLUXO DE CAPTURA (2 ETAPAS AO VIVO)
+         ================================================================== -->
+    <section class="ds-group" id="ds-forms">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 09</span>
+          <h2 class="ds-head__title">Formulários &amp; Fluxo VIP (2 Etapas)</h2>
+        </div>
+        <span class="y-caption">Fundo --surface-2 (#120F0D) · Foco em Champagne (#E7D3B0)</span>
+      </div>
+
+      <div class="ds-spec">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+          <h3 style="margin:0;">Fluxo Interativo: Captação (Etapa 1) → Botão Grupo WhatsApp (Etapa 2)</h3>
+          <div class="ds-row" style="gap:8px;">
+            <button type="button" class="y-btn y-btn--ghost" id="btn-show-step1" style="border-color:var(--copper); color:var(--cream);">Ver Etapa 1 (Formulário)</button>
+            <button type="button" class="y-btn y-btn--ghost" id="btn-show-step2">Ver Etapa 2 (Pós-Cadastro WhatsApp)</button>
+          </div>
+        </div>
+
+        <div class="ds-stage" style="display:grid; place-items:center;">
+          <div class="y-card y-card--glow" style="width:100%; max-width:410px; padding:26px 22px;">
+            <!-- ETAPA 1 -->
+            <div id="vip-step-1">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                <span class="y-chip"><span class="y-dot-live"></span> PASSO 1 DE 2 · LISTA VIP</span>
+                <span class="y-caption" style="color:var(--copper); font-weight:600;">GRATUITO</span>
+              </div>
+              <h4 class="y-h3" style="margin-bottom:6px;">ENTRE NA LISTA VIP BLACK YOHA</h4>
+              <p class="y-body" style="font-size:13.5px; margin-bottom:18px;">Cadastre seus dados para liberar o acesso ao Grupo Oficial silencioso no WhatsApp.</p>
+
+              <form id="ds-vip-form" novalidate style="display:flex; flex-direction:column; gap:14px;">
+                <div class="y-field">
+                  <label class="y-field__label" for="inp-name">SEU NOME</label>
+                  <div class="y-input-wrap">
+                    <span class="y-input-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <input type="text" id="inp-name" class="y-input y-input--with-icon" placeholder="Seu primeiro nome" required>
+                  </div>
+                </div>
+
+                <div class="y-field">
+                  <label class="y-field__label" for="inp-wa">SEU WHATSAPP COM DDD</label>
+                  <div class="y-input-wrap">
+                    <span class="y-input-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+                    <input type="tel" id="inp-wa" class="y-input y-input--with-icon" placeholder="(11) 99999-9999" maxlength="15" required>
+                  </div>
+                </div>
+
+                <div class="y-field">
+                  <label class="y-field__label" for="inp-email">SEU MELHOR E-MAIL</label>
+                  <div class="y-input-wrap">
+                    <span class="y-input-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+                    <input type="email" id="inp-email" class="y-input y-input--with-icon" placeholder="voce@email.com" required>
+                  </div>
+                </div>
+
+                <button type="submit" class="y-btn y-btn--primary y-btn--full" style="margin-top:4px;">
+                  <span>QUERO ENTRAR NA LISTA VIP</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+
+                <p class="y-caption" style="text-align:center;">🔒 Grupo silencioso, sem spam. Dados protegidos.</p>
+              </form>
+            </div>
+
+            <!-- ETAPA 2 -->
+            <div id="vip-step-2" style="display:none; text-align:center;">
+              <div style="width:56px; height:56px; margin:0 auto 14px; border-radius:50%; background:rgba(127,183,126,0.16); border:1px solid rgba(127,183,126,0.4); color:var(--ok); display:grid; place-items:center;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <span class="y-chip y-chip--ok" style="margin-bottom:12px;">PASSO 2 DE 2 · VAGA PRÉ-RESERVADA</span>
+              <h4 class="y-h3" style="margin-bottom:8px;">FALTA SÓ 1 CLIQUE, <span id="vip-user-name" class="y-text-copper">VIP</span>!</h4>
+              <p class="y-body" style="font-size:14px; margin-bottom:18px;">
+                Toque no botão abaixo para <strong class="y-text-cream">entrar no Grupo VIP do WhatsApp</strong> e receber o link com até 60% OFF 1h antes.
+              </p>
+
+              <div class="y-meter" style="margin-bottom:18px; text-align:left; background:var(--surface-2); padding:12px 14px; border-radius:12px; border:1px solid var(--line);">
+                <div class="y-meter__head">
+                  <span>Grupo VIP #04 · Black Yoha</span>
+                  <strong style="color:var(--ok)">92% preenchido</strong>
+                </div>
+                <div class="y-meter__track">
+                  <div class="y-meter__fill y-meter__fill--ok" style="width:92%"></div>
+                </div>
+              </div>
+
+              <a href="#ds-forms" class="y-btn y-btn--wa-white y-btn--full">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.529 5.856l-1.529 5.584 5.716-1.499c1.685.918 3.615 1.443 5.669 1.443 6.627 0 12-5.373 12-12s-5.373-12-12.385-11.384z"/></svg>
+                <span>ENTRAR NO GRUPO DO WHATSAPP</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         10. CARDS DE PRODUTOS REAIS DA LOJA VIVAYOHA.COM.BR & BENEFÍCIOS
+         ================================================================== -->
+    <section class="ds-group" id="ds-cards">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 10</span>
+          <h2 class="ds-head__title">Produtos Oficiais Yoha &amp; Cards</h2>
+        </div>
+        <span class="y-caption">Packshots reais do CDN de vivayoha.com.br</span>
+      </div>
+
+      <div class="ds-spec">
+        <h3>Vitrine Spoiler Black Yoha (Produtos Reais do Site)</h3>
+        <div class="ds-grid-4">
+          <article class="y-prod-card">
+            <div class="y-prod-card__media">
+              <span class="y-prod-card__tag">LISTA VIP</span>
+              <img src="https://vivayoha.com.br/cdn/shop/files/1-YOHA_CREATINA_GOURMET_ABACAXI_COM_HORTELA_300g.png?v=1759780456" alt="Creatina Gourmet 300g" loading="lazy">
+            </div>
+            <div class="y-prod-card__body">
+              <span class="y-label" style="font-size:10px;">PERFORMANCE</span>
+              <h4 class="y-h4" style="font-size:15px;">Creatina Gourmet 300g</h4>
+              <p class="y-caption">Desconto secreto liberado no grupo VIP.</p>
+            </div>
+          </article>
+
+          <article class="y-prod-card">
+            <div class="y-prod-card__media">
+              <span class="y-prod-card__tag">LISTA VIP</span>
+              <img src="https://vivayoha.com.br/cdn/shop/files/1-YOHABIOTINAMORANGO30ml600doses.png?v=1760467661" alt="Biotina 30ml" loading="lazy">
+            </div>
+            <div class="y-prod-card__body">
+              <span class="y-label" style="font-size:10px;">BELEZA &amp; SAÚDE</span>
+              <h4 class="y-h4" style="font-size:15px;">Biotina Drops 600 Doses</h4>
+              <p class="y-caption">Fórmula líquida de rápida absorção.</p>
+            </div>
+          </article>
+
+          <article class="y-prod-card">
+            <div class="y-prod-card__media">
+              <span class="y-prod-card__tag">LISTA VIP</span>
+              <img src="https://vivayoha.com.br/cdn/shop/files/2-YOHA_ACIDO_HIALURONICO_30_capsulas.png?v=1755642673" alt="Ácido Hialurônico" loading="lazy">
+            </div>
+            <div class="y-prod-card__body">
+              <span class="y-label" style="font-size:10px;">PELE &amp; HIDRATAÇÃO</span>
+              <h4 class="y-h4" style="font-size:15px;">Ácido Hialurônico</h4>
+              <p class="y-caption">Kits de 3 e 6 meses no 1º lote.</p>
+            </div>
+          </article>
+
+          <article class="y-prod-card">
+            <div class="y-prod-card__media">
+              <span class="y-prod-card__tag">LISTA VIP</span>
+              <img src="https://vivayoha.com.br/cdn/shop/files/1-YOHACABELO_PELEEUNHA30capsulas.png?v=1755121781" alt="Cabelo, Pele e Unha" loading="lazy">
+            </div>
+            <div class="y-prod-card__body">
+              <span class="y-label" style="font-size:10px;">ENCAPSULADOS</span>
+              <h4 class="y-h4" style="font-size:15px;">Cabelo, Pele e Unha</h4>
+              <p class="y-caption">Com Vitamina B7 e minerais essenciais.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="ds-spec">
+        <h3>Banners de Categorias do Menu Mobile da Yoha (.nav-items__card)</h3>
+        <div class="ds-grid-4">
+          <div style="border-radius:14px; overflow:hidden; border:1px solid var(--line);"><img src="https://vivayoha.com.br/cdn/shop/files/Whey.png?v=1775147269&amp;width=400" alt="Whey"></div>
+          <div style="border-radius:14px; overflow:hidden; border:1px solid var(--line);"><img src="https://vivayoha.com.br/cdn/shop/files/Creatina_d46b8171-ccc8-4bec-89ea-b1cf70791889.png?v=1775147175&amp;width=400" alt="Creatina"></div>
+          <div style="border-radius:14px; overflow:hidden; border:1px solid var(--line);"><img src="https://vivayoha.com.br/cdn/shop/files/Biotina.png?v=1775147217&amp;width=400" alt="Biotina"></div>
+          <div style="border-radius:14px; overflow:hidden; border:1px solid var(--line);"><img src="https://vivayoha.com.br/cdn/shop/files/Colageno_c09efcca-5d6c-476e-8fea-15c8f7007f68.png?v=1775147252&amp;width=400" alt="Colágeno"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         11. CONTADORES & ESCASSEZ (ESTILO #COUNTDOWN-BAR DO SITE)
+         ================================================================== -->
+    <section class="ds-group" id="ds-data">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 11</span>
+          <h2 class="ds-head__title">Countdown Oficial &amp; Lotes</h2>
+        </div>
+        <span class="y-caption">Inspirado diretamente no #countdown-bar (#000000 + borda #E7D3B0) do site</span>
+      </div>
+
+      <div class="ds-grid-2">
+        <div class="ds-spec">
+          <h3>Countdown Timer Yoha (.y-countdown)</h3>
+          <div class="ds-stage">
+            <div class="y-countdown">
+              <div class="y-countdown__unit">
+                <span class="y-countdown__val" data-cd="d">04</span>
+                <span class="y-countdown__lbl">DIAS</span>
+              </div>
+              <div class="y-countdown__unit">
+                <span class="y-countdown__val" data-cd="h">11</span>
+                <span class="y-countdown__lbl">HORAS</span>
+              </div>
+              <div class="y-countdown__unit">
+                <span class="y-countdown__val" data-cd="m">42</span>
+                <span class="y-countdown__lbl">MIN</span>
+              </div>
+              <div class="y-countdown__unit">
+                <span class="y-countdown__val" data-cd="s">19</span>
+                <span class="y-countdown__lbl">SEG</span>
+              </div>
+            </div>
+          </div>
+          <code class="ds-meta"><b>.y-countdown__unit</b> background #0A0908 · border 1.5px solid #E7D3B0 · números em #E7D3B0</code>
+        </div>
+
+        <div class="ds-spec">
+          <h3>Medidor de Vagas do Grupo VIP (.y-meter)</h3>
+          <div class="ds-stage" style="display:flex; flex-direction:column; justify-content:center; min-height:132px;">
+            <div class="y-meter">
+              <div class="y-meter__head">
+                <span>Grupo VIP #04 da Black Yoha</span>
+                <strong>89% preenchido</strong>
+              </div>
+              <div class="y-meter__track">
+                <div class="y-meter__fill" style="width: 89%;"></div>
+              </div>
+              <span class="y-caption">Preenchimento em degradê Bronze Tampa (#9E8356) → Champagne (#E7D3B0).</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         12. FAQ & ACORDEÃO
+         ================================================================== -->
+    <section class="ds-group" id="ds-faq">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 12</span>
+          <h2 class="ds-head__title">FAQ &amp; Disclosure</h2>
+        </div>
+        <span class="y-caption">Acordeão limpo para quebra de objeções no mobile</span>
+      </div>
+
+      <div class="ds-spec">
+        <div class="y-faq" style="max-width:680px;">
+          <details class="y-faq__item" open>
+            <summary class="y-faq__summary">
+              <span>O grupo de WhatsApp é silencioso?</span>
+              <span class="y-faq__icon">+</span>
+            </summary>
+            <div class="y-faq__body">
+              Sim! Apenas a equipe da Yoha envia mensagens pontuais com os spoilers das ofertas e o link de abertura antecipada da Black Friday.
+            </div>
+          </details>
+
+          <details class="y-faq__item">
+            <summary class="y-faq__summary">
+              <span>Quais suplementos entram na Black Yoha?</span>
+              <span class="y-faq__icon">+</span>
+            </summary>
+            <div class="y-faq__body">
+              Whey Protein, Creatina Gourmet, Biotina, Ácido Hialurônico, Colágeno e toda a linha de encapsulados da loja oficial vivayoha.com.br.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         13. DIRETRIZES MOBILE-FIRST (360–430PX)
+         ================================================================== -->
+    <section class="ds-group" id="ds-mobile">
+      <div class="ds-head">
+        <div>
+          <span class="y-label">Componentes · 13</span>
+          <h2 class="ds-head__title">Mobile-First (360 a 430 px)</h2>
+        </div>
+        <span class="y-caption">Otimizado para tráfego de Stories e Feed da Meta</span>
+      </div>
+
+      <div class="y-card">
+        <div class="ds-grid-3">
+          <div>
+            <span class="y-label">ALVO DE TOQUE</span>
+            <h4 class="y-h4" style="margin:6px 0;">Mínimo 54–58 px</h4>
+            <p class="y-body" style="font-size:13.5px;">Inputs com <code>54px</code> e botões com <code>58px</code> de altura mínima.</p>
+          </div>
+          <div>
+            <span class="y-label">ZERO ZOOM NO IOS</span>
+            <h4 class="y-h4" style="margin:6px 0;">Inputs em 16 px</h4>
+            <p class="y-body" style="font-size:13.5px;">Evita zoom forçado no navegador in-app do Instagram.</p>
+          </div>
+          <div>
+            <span class="y-label">IDENTIDADE FIEL</span>
+            <h4 class="y-h4" style="margin:6px 0;">Creme + Carbono</h4>
+            <p class="y-body" style="font-size:13.5px;">Continuidade visual imediata com os criativos e potes da Yoha.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ======================================================================
+     VIEW 2: SIMULADOR MOBILE INTERATIVO (360px / 390px / 430px)
+     ====================================================================== -->
+<section id="view-overview" aria-label="Simulador Mobile">
+  <div style="max-width: 960px; margin: 0 auto;">
+    <div class="ds-phone-toolbar">
+      <div>
+        <span class="y-label">SIMULADOR MOBILE META ADS (STORIES &amp; FEED)</span>
+        <p class="y-caption">Veja a nova paleta Creme Champagne + Carbono nas larguras de 360px a 430px.</p>
+      </div>
+      <div class="ds-row" style="gap:8px;">
+        <button type="button" class="y-btn y-btn--ghost" data-phone-w="360">360px (Android)</button>
+        <button type="button" class="y-btn y-btn--ghost" data-phone-w="390" style="border-color:var(--copper);color:var(--cream)">390px (iPhone)</button>
+        <button type="button" class="y-btn y-btn--ghost" data-phone-w="430">430px (Pro Max)</button>
+      </div>
+    </div>
+
+    <div class="ds-phone-stage">
+      <div class="ds-phone-frame" id="phone-frame">
+        <div class="ds-phone-notch"><span></span></div>
+        <div class="ds-phone-body">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="y-brand" style="font-size:26px;">yoha</span>
+            <span class="y-chip" style="font-size:10.5px; padding:5px 10px;"><span class="y-dot-live"></span> LISTA VIP</span>
+          </div>
+
+          <div style="text-align:center;">
+            <span class="y-label" style="font-size:11px; margin-bottom:6px; justify-content:center;">BLACK FRIDAY YOHA · ACESSO ANTECIPADO</span>
+            <h2 class="y-h1" style="font-size:34px; margin-bottom:10px;">A MAIOR BLACK DA HISTÓRIA DA YOHA</h2>
+            <div class="y-stat-pair" style="justify-content:center; margin-bottom:10px;">
+              <div class="y-stat-box y-stat-box--filled" style="min-width:105px; padding:8px 12px;">
+                <span class="y-stat-box__kicker">DESCONTOS</span>
+                <span class="y-stat-box__val" style="font-size:21px;">ATÉ 60%</span>
+              </div>
+              <div class="y-stat-box y-stat-box--outline" style="min-width:105px; padding:8px 12px;">
+                <span class="y-stat-box__kicker">NO WHATSAPP</span>
+                <span class="y-stat-box__val" style="font-size:21px;">1H ANTES</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="y-card y-card--glow" style="padding:18px 16px;">
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <input type="text" class="y-input" placeholder="Seu primeiro nome">
+              <input type="tel" class="y-input" placeholder="WhatsApp com DDD">
+              <input type="email" class="y-input" placeholder="Seu melhor e-mail">
+              <button type="button" class="y-btn y-btn--primary y-btn--full">QUERO ENTRAR NA LISTA VIP</button>
+            </div>
+          </div>
+
+          <div class="y-card y-card--cream" style="padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <div>
+              <span class="y-label" style="font-size:10px;">EXCLUSIVO GRUPO VIP</span>
+              <p style="font-family:var(--font-display); font-weight:800; font-size:13.5px; color:var(--copper-deep); text-transform:uppercase;">WHEY, CREATINA &amp; BIOTINA NO 1º LOTE</p>
+            </div>
+            <span class="y-chip" style="background:var(--copper-deep); color:var(--cream-2); border:0;">VIP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Toast de cópia -->
+<div id="ds-toast" role="status" aria-live="polite">
+  <span class="y-dot-live y-dot-live--ok"></span>
+  <span id="ds-toast-text">Token copiado!</span>
+</div>
+
+<script>
+(function () {
+  var tabComp = document.getElementById('tab-components');
+  var tabOver = document.getElementById('tab-overview');
+  var mainEl = document.getElementById('ds-main');
+  var progressEl = document.getElementById('ds-progress');
+
+  function setView(view) {
+    if (view === 'overview') {
+      document.body.classList.add('is-overview');
+      tabOver.classList.add('is-active');
+      tabComp.classList.remove('is-active');
+    } else {
+      document.body.classList.remove('is-overview');
+      tabComp.classList.add('is-active');
+      tabOver.classList.remove('is-active');
+    }
+  }
+
+  tabComp.addEventListener('click', function () { setView('components'); });
+  tabOver.addEventListener('click', function () { setView('overview'); });
+
+  var sideLinks = Array.prototype.slice.call(document.querySelectorAll('#ds-side a'));
+  var sections = sideLinks.map(function (a) {
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  mainEl.addEventListener('scroll', function () {
+    var maxScroll = mainEl.scrollHeight - mainEl.clientHeight;
+    var pct = maxScroll > 0 ? Math.min(1, mainEl.scrollTop / maxScroll) : 0;
+    progressEl.style.transform = 'scaleX(' + pct + ')';
+
+    var currentId = sections[0] ? sections[0].id : '';
+    var offset = mainEl.scrollTop + 140;
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].offsetTop <= offset) {
+        currentId = sections[i].id;
+      }
+    }
+    sideLinks.forEach(function (a) {
+      a.classList.toggle('is-current', a.getAttribute('href') === '#' + currentId);
+    });
+  });
+
+  var toast = document.getElementById('ds-toast');
+  var toastText = document.getElementById('ds-toast-text');
+  var toastTimer = null;
+
+  function showToast(msg) {
+    toastText.textContent = msg;
+    toast.classList.add('is-visible');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('is-visible');
+    }, 2200);
+  }
+
+  document.querySelectorAll('.ds-sw[data-copy]').forEach(function (sw) {
+    sw.addEventListener('click', function () {
+      var val = sw.getAttribute('data-copy');
+      var hex = sw.querySelector('.hex') ? sw.querySelector('.hex').textContent : '';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val);
+      }
+      showToast('Copiado: ' + val + ' (' + hex + ')');
+    });
+  });
+
+  var btnReplay = document.getElementById('btn-replay-motion');
+  if (btnReplay) {
+    btnReplay.addEventListener('click', function () {
+      var items = document.querySelectorAll('[data-reveal-item]');
+      items.forEach(function (el) { el.classList.remove('is-in'); });
+      setTimeout(function () {
+        items.forEach(function (el) { el.classList.add('is-in'); });
+      }, 120);
+    });
+  }
+
+  var inpWa = document.getElementById('inp-wa');
+  if (inpWa) {
+    inpWa.addEventListener('input', function (e) {
+      var v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length > 6) {
+        e.target.value = '(' + v.slice(0, 2) + ') ' + v.slice(2, 7) + '-' + v.slice(7);
+      } else if (v.length > 2) {
+        e.target.value = '(' + v.slice(0, 2) + ') ' + v.slice(2);
+      } else if (v.length > 0) {
+        e.target.value = '(' + v;
+      }
+    });
+  }
+
+  var step1 = document.getElementById('vip-step-1');
+  var step2 = document.getElementById('vip-step-2');
+  var btnS1 = document.getElementById('btn-show-step1');
+  var btnS2 = document.getElementById('btn-show-step2');
+  var vipForm = document.getElementById('ds-vip-form');
+  var vipUserName = document.getElementById('vip-user-name');
+
+  function toggleStep(step) {
+    if (step === 2) {
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+      btnS2.style.borderColor = 'var(--copper)';
+      btnS2.style.color = 'var(--cream)';
+      btnS1.style.borderColor = 'var(--line)';
+      btnS1.style.color = 'var(--muted)';
+    } else {
+      step1.style.display = 'block';
+      step2.style.display = 'none';
+      btnS1.style.borderColor = 'var(--copper)';
+      btnS1.style.color = 'var(--cream)';
+      btnS2.style.borderColor = 'var(--line)';
+      btnS2.style.color = 'var(--muted)';
+    }
+  }
+
+  btnS1.addEventListener('click', function () { toggleStep(1); });
+  btnS2.addEventListener('click', function () { toggleStep(2); });
+
+  if (vipForm) {
+    vipForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nameVal = document.getElementById('inp-name').value.trim();
+      vipUserName.textContent = nameVal ? nameVal.split(' ')[0].toUpperCase() : 'VIP';
+      toggleStep(2);
+      showToast('Etapa 1 concluída → Botão WhatsApp liberado!');
+    });
+  }
+
+  var secEl = document.querySelector('[data-cd="s"]');
+  var minEl = document.querySelector('[data-cd="m"]');
+  if (secEl && minEl) {
+    var sec = 19, min = 42;
+    setInterval(function () {
+      sec--;
+      if (sec < 0) { sec = 59; min = min > 0 ? min - 1 : 59; }
+      secEl.textContent = sec < 10 ? '0' + sec : String(sec);
+      minEl.textContent = min < 10 ? '0' + min : String(min);
+    }, 1000);
+  }
+
+  var phoneFrame = document.getElementById('phone-frame');
+  var phoneBtns = document.querySelectorAll('[data-phone-w]');
+  phoneBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var w = btn.getAttribute('data-phone-w');
+      phoneFrame.style.width = w + 'px';
+      phoneBtns.forEach(function (b) {
+        b.style.borderColor = 'var(--line)';
+        b.style.color = 'var(--muted)';
+      });
+      btn.style.borderColor = 'var(--copper)';
+      btn.style.color = 'var(--cream)';
+    });
+  });
+})();
+</script>
+</body>
+</html>

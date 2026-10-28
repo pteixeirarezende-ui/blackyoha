@@ -1,0 +1,1107 @@
+/* ==========================================================================
+   YOHA DESIGN SYSTEM — INSPIRADO EM VIVAYOHA.COM.BR (v2.0)
+   Marca brasileira de suplementos (vivayoha.com.br)
+   Estética real Yoha: Editorial, minimalista, preta/carbono + cacau profundo
+   + creme areia/champagne (#E7D3B0 / #F3F1E8) + bronze fosco das tampas Yoha.
+   Zero tom alaranjado. Tipografia oficial Rebond Grotesque + Poppins.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* Fontes oficiais Rebond Grotesque direto do CDN da vivayoha.com.br */
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('https://vivayoha.com.br/cdn/shop/t/18/assets/Rebond%20Grotesque.ttf?v=73146064040859713471774978172') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('https://vivayoha.com.br/cdn/shop/t/18/assets/Rebond%20Grotesque%20Medium.ttf?v=47610386382318522381774978170') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('https://vivayoha.com.br/cdn/shop/t/18/assets/Rebond%20Grotesque%20Semibold.ttf?v=109960283336797701781774978171') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('https://vivayoha.com.br/cdn/shop/t/18/assets/Rebond%20Grotesque%20Bold.ttf?v=119151943149306628381774978170') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Rebond Grotesque';
+  src: url('https://vivayoha.com.br/cdn/shop/t/18/assets/Rebond%20Grotesque%20Extrabold.ttf?v=52798275705119155661774978171') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ------------------------------------------------------------------------
+     1. PALETA REAL YOHA (BLACK EDITION — SEM LARANJA)
+     Extraída de vivayoha.com.br (--black-2 #231F20, --off-white #F3F1E8,
+     countdown #E7D3B0, potes creme #EFE4CE e tampas bronze-champagne #9E8356)
+     ------------------------------------------------------------------------ */
+  --bg:           #0E0C0A; /* fundo da página: carbono/cacau quase preto */
+  --surface:      #171411; /* cards: grafite quente Yoha */
+  --surface-2:    #120F0D; /* campos de formulário e contadores */
+  --line:         #2B2520; /* bordas sutis em tom areia/cacau escuro */
+
+  /* Mantemos os nomes semânticos dos tokens, mas calibrados na paleta Champagne/Bronze/Cacau do site */
+  --copper:       #E7D3B0; /* Destaque principal Yoha: Champagne/Areia dos potes e countdown oficial */
+  --copper-hi:    #C8B28E; /* Rótulos pequenos, ícones e bordas de destaque (Areia Dourada suave) */
+  --copper-deep:  #5A432E; /* Marrom Cacau Yoha (texto de destaque sobre superfície clara --cream-2, igual ao banner de encapsulados) */
+  --bronze:       #9E8356; /* Tom exato da tampa dourada-fosca dos potes Yoha */
+
+  --cream:        #F3F1E8; /* --off-white oficial do site vivayoha.com.br */
+  --cream-2:      #EFE4CE; /* Superfície clara creme-baunilha (cor do pote Yoha e selo "23g Proteína") */
+  --muted:        #B8AFA2; /* Texto secundário neutro-quente */
+  --muted-2:      #7E756B; /* Rodapé, placeholders e legendas */
+
+  /* Tokens originais do tema claro da loja para referência e cards híbridos */
+  --yoha-black:     #000000;
+  --yoha-charcoal:  #231F20;
+  --yoha-offwhite:  #FAFAF7;
+
+  /* Estados semânticos e WhatsApp */
+  --ok:           #7FB77E; /* sucesso */
+  --err:          #E07A68; /* erro suave */
+  --wa:           #25D366; /* exclusivo botão "Entrar no grupo do WhatsApp" */
+
+  /* Brilhos e Atmosfera (Luz Champagne/Cacau suave, sem laranja) */
+  --copper-border:     rgba(231, 211, 176, 0.26);
+  --copper-border-hi:  rgba(231, 211, 176, 0.55);
+  --hero-radial-glow:  radial-gradient(880px 500px at 50% -6%, rgba(158, 131, 86, 0.22), rgba(90, 67, 46, 0.08) 45%, transparent 72%);
+  --card-radial-glow:  radial-gradient(440px 240px at 50% 0%, rgba(231, 211, 176, 0.10), transparent 72%);
+
+  /* ------------------------------------------------------------------------
+     2. TIPOGRAFIA OFICIAL VIVAYOHA.COM.BR
+     ------------------------------------------------------------------------ */
+  --font-display: 'Rebond Grotesque', 'Archivo', system-ui, -apple-system, sans-serif;
+  --font-body:    'Poppins', 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    ui-monospace, 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+
+  /* Escala fluida Mobile-First (360–430px base → desktop) */
+  --text-h1:      clamp(34px, 10.5vw, 48px);
+  --text-h2:      clamp(26px, 7.5vw, 36px);
+  --text-h3:      clamp(20px, 5.2vw, 24px);
+  --text-h4:      clamp(16px, 4.2vw, 18px);
+  --text-lead:    clamp(15px, 4.1vw, 17px);
+  --text-body:    14.5px;
+  --text-sm:      13px;
+  --text-label:   12px;
+  --text-caption: 12px;
+
+  /* ------------------------------------------------------------------------
+     3. FORMAS, RAIOS E SOMBRAS
+     ------------------------------------------------------------------------ */
+  --radius-card:  20px;
+  --radius-btn:   14px;
+  --radius-pill:  100px; /* Botões arredondados característicos do site vivayoha.com.br */
+  --radius-input: 12px;
+  --radius-chip:  999px;
+
+  --btn-min-h:    58px;
+  --input-min-h:  54px;
+
+  --shadow-copper:       0 10px 28px -6px rgba(231, 211, 176, 0.22), 0 2px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --shadow-copper-hover: 0 14px 34px -4px rgba(231, 211, 176, 0.34), 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --shadow-wa:           0 10px 28px -4px rgba(37, 211, 102, 0.34), 0 2px 8px rgba(37, 211, 102, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  --shadow-wa-hover:     0 14px 34px -2px rgba(37, 211, 102, 0.48), 0 4px 12px rgba(37, 211, 102, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  --shadow-card:         0 20px 44px -14px rgba(0, 0, 0, 0.65);
+
+  /* ------------------------------------------------------------------------
+     4. ESPAÇAMENTO E MOTION
+     ------------------------------------------------------------------------ */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth:   cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:      180ms;
+  --dur-base:      300ms;
+  --dur-slow:      650ms;
+}
+
+/* ==========================================================================
+   RESET & BASE
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: var(--hero-radial-glow);
+  background-repeat: no-repeat;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-weight: 400;
+  min-height: 100svh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--copper);
+  color: var(--bg);
+}
+
+img, svg, video {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   TIPOGRAFIA — FIEL AO SITE VIVAYOHA.COM.BR
+   ========================================================================== */
+
+/* Wordmark oficial: "yoha" em minúsculas, Rebond Grotesque Bold/Extrabold, limpa (sem ponto laranja) */
+.y-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: lowercase;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+  color: var(--cream);
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+}
+
+.y-brand-img {
+  height: 28px;
+  width: auto;
+  filter: invert(1) brightness(0.95);
+}
+
+/* Títulos: Rebond Grotesque Bold/Extrabold, caixa alta, cor Creme (#F3F1E8 / #EFE4CE) */
+.y-h1,
+.y-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-h1);
+  line-height: 1.02;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.y-h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-h2);
+  line-height: 1.06;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.y-h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-h3);
+  line-height: 1.12;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+.y-h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-h4);
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+/* Rótulos pequenos (Eyebrow): caixa alta, tracking 2px, 12px, cor --copper-hi (#C8B28E Champagne/Areia) */
+.y-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: var(--text-label);
+  line-height: 1.3;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--copper-hi);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Corpo e parágrafos em Poppins / DM Sans */
+.y-lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-lead);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.y-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.y-body-strong {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.y-caption {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-caption);
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+/* Destaques cromáticos */
+.y-text-copper { color: var(--copper); }       /* Champagne #E7D3B0 */
+.y-text-copper-hi { color: var(--copper-hi); } /* Areia Dourada #C8B28E */
+.y-text-copper-deep { color: var(--copper-deep); } /* Marrom Cacau #5A432E */
+.y-text-cream { color: var(--cream); }
+.y-text-muted { color: var(--muted); }
+.y-text-muted-2 { color: var(--muted-2); }
+.y-text-ok { color: var(--ok); }
+.y-text-err { color: var(--err); }
+.y-text-wa { color: var(--wa); }
+
+.y-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================================================
+   SELOS DUPLOS ESTILO BANNER YOHA WHEY ("PROTEÍNA 23g" | "BCAA'S 3,0g")
+   Um preenchido em Creme (#EFE4CE) com texto escuro + um vazado com borda Creme
+   ========================================================================== */
+.y-stat-pair {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.y-stat-box {
+  min-width: 118px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--cream-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.05;
+}
+
+.y-stat-box--filled {
+  background-color: var(--cream-2);
+  color: #24160E;
+}
+
+.y-stat-box--outline {
+  background-color: rgba(14, 12, 10, 0.55);
+  color: var(--cream-2);
+}
+
+.y-stat-box__kicker {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 10.5px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.y-stat-box__val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   CHIPS, BADGES & TAGS (Raio 999px)
+   ========================================================================== */
+.y-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-chip);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  line-height: 1;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  background: rgba(231, 211, 176, 0.10);
+  border: 1px solid var(--copper-border);
+  color: var(--copper);
+  white-space: nowrap;
+}
+
+.y-chip--surface {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+.y-chip--cream {
+  background: var(--cream-2);
+  border-color: transparent;
+  color: #231F20;
+  font-weight: 700;
+}
+
+.y-chip--dark-tag {
+  background: var(--yoha-charcoal);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+}
+
+.y-chip--ok {
+  background: rgba(127, 183, 126, 0.14);
+  border-color: rgba(127, 183, 126, 0.35);
+  color: var(--ok);
+}
+
+.y-chip--err {
+  background: rgba(224, 122, 104, 0.14);
+  border-color: rgba(224, 122, 104, 0.35);
+  color: var(--err);
+}
+
+.y-chip--wa {
+  background: rgba(37, 211, 102, 0.14);
+  border-color: rgba(37, 211, 102, 0.38);
+  color: var(--wa);
+}
+
+.y-dot-live {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--copper);
+  box-shadow: 0 0 0 0 rgba(231, 211, 176, 0.7);
+  animation: y-pulse-sand 2s infinite;
+  flex-shrink: 0;
+}
+
+.y-dot-live--ok {
+  background: var(--ok);
+  animation: y-pulse-ok 2s infinite;
+}
+
+.y-dot-live--wa {
+  background: var(--wa);
+  animation: y-pulse-wa 2s infinite;
+}
+
+@keyframes y-pulse-sand {
+  0%   { box-shadow: 0 0 0 0 rgba(231, 211, 176, 0.65); }
+  70%  { box-shadow: 0 0 0 8px rgba(231, 211, 176, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(231, 211, 176, 0); }
+}
+
+@keyframes y-pulse-ok {
+  0%   { box-shadow: 0 0 0 0 rgba(127, 183, 126, 0.65); }
+  70%  { box-shadow: 0 0 0 8px rgba(127, 183, 126, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(127, 183, 126, 0); }
+}
+
+@keyframes y-pulse-wa {
+  0%   { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.65); }
+  70%  { box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* ==========================================================================
+   BOTÕES E CTAs — PEGADA VIVAYOHA.COM.BR (Champagne/Creme + Carbono)
+   ========================================================================== */
+.y-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: var(--btn-min-h);
+  padding: 16px 28px;
+  border-radius: var(--radius-btn);
+  border: 1.5px solid transparent;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14.5px;
+  line-height: 1.1;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    background-color var(--dur-base) var(--ease-smooth),
+    box-shadow var(--dur-base) var(--ease-smooth),
+    border-color var(--dur-base) var(--ease-smooth),
+    color var(--dur-base) var(--ease-smooth);
+  isolation: isolate;
+}
+
+.y-btn--full {
+  width: 100%;
+}
+
+.y-btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+/* Botão Principal: Fundo Champagne/Creme Yoha (#E7D3B0 / #EFE4CE) com texto Preto/Cacau (#120E0B)
+   Alto contraste no fundo escuro, zero laranja, 100% alinhado aos potes e banners da Yoha */
+.y-btn--primary {
+  background-color: var(--copper);
+  color: #120E0B;
+  box-shadow: var(--shadow-copper);
+}
+
+.y-btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.42) 50%, transparent 75%);
+  transform: translateX(-120%);
+  transition: transform 0.65s var(--ease-out-expo);
+  z-index: -1;
+}
+
+.y-btn--primary:hover,
+.y-btn--primary.is-hover {
+  background-color: var(--cream);
+  box-shadow: var(--shadow-copper-hover);
+  transform: translateY(-2px);
+}
+
+.y-btn--primary:hover::before,
+.y-btn--primary.is-hover::before {
+  transform: translateX(120%);
+}
+
+.y-btn--primary:active,
+.y-btn--primary.is-active {
+  transform: translateY(0) scale(0.985);
+  background-color: var(--copper-hi);
+}
+
+/* Botão WhatsApp: exclusivamente para "Entrar no grupo do WhatsApp" (--wa #25D366) */
+.y-btn--wa,
+.y-btn--wa-white {
+  background-color: var(--wa);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  box-shadow: var(--shadow-wa);
+}
+
+.y-btn--wa:hover,
+.y-btn--wa.is-hover,
+.y-btn--wa-white:hover,
+.y-btn--wa-white.is-hover {
+  background-color: #2BE06E;
+  box-shadow: var(--shadow-wa-hover);
+  transform: translateY(-2px);
+}
+
+.y-btn--wa:active,
+.y-btn--wa-white:active {
+  transform: translateY(0) scale(0.985);
+}
+
+/* Botão Secundário (Outline Creme Yoha — igual ao botão "APROVEITE JÁ!" e ".button-carousel-products" do site) */
+.y-btn--secondary {
+  background-color: transparent;
+  border-color: var(--copper);
+  color: var(--cream);
+}
+
+.y-btn--secondary:hover,
+.y-btn--secondary.is-hover {
+  background-color: var(--copper);
+  color: #120E0B;
+  transform: translateY(-1px);
+}
+
+/* Botão Ghost / Compacto */
+.y-btn--ghost {
+  min-height: 42px;
+  padding: 9px 18px;
+  background: transparent;
+  border-color: var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1.2px;
+}
+
+.y-btn--ghost:hover {
+  border-color: var(--copper);
+  color: var(--cream);
+}
+
+/* Estados Disabled & Loading */
+.y-btn:disabled,
+.y-btn.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.y-btn.is-loading {
+  pointer-events: none;
+}
+
+.y-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(18, 14, 11, 0.25);
+  border-top-color: #120E0B;
+  border-radius: 50%;
+  animation: y-spin 0.7s linear infinite;
+}
+
+@keyframes y-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   CAMPOS DE FORMULÁRIO (Raio 12px, Fundo --surface-2, Borda --line)
+   ========================================================================== */
+.y-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.y-field__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--copper-hi);
+}
+
+.y-field__hint {
+  font-size: 11px;
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 400;
+  color: var(--muted-2);
+}
+
+.y-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.y-input-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--muted-2);
+  pointer-events: none;
+  display: inline-flex;
+  transition: color var(--dur-fast) var(--ease-smooth);
+}
+
+.y-input-status {
+  position: absolute;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.y-input {
+  width: 100%;
+  min-height: var(--input-min-h);
+  padding: 14px 16px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-input);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px; /* evita zoom automático no iOS Safari */
+  font-weight: 400;
+  line-height: 1.3;
+  outline: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-smooth),
+    box-shadow var(--dur-fast) var(--ease-smooth),
+    background-color var(--dur-fast) var(--ease-smooth);
+}
+
+.y-input--with-icon {
+  padding-left: 46px;
+}
+
+.y-input::placeholder {
+  color: var(--muted-2);
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+.y-input:hover {
+  border-color: #3F372F;
+}
+
+.y-input:focus,
+.y-input.is-focus {
+  border-color: var(--copper);
+  box-shadow: 0 0 0 3px rgba(231, 211, 176, 0.16);
+  background-color: #181411;
+}
+
+.y-input-wrap:focus-within .y-input-icon {
+  color: var(--copper);
+}
+
+/* Estado de Sucesso (--ok #7FB77E) */
+.y-field.is-ok .y-input,
+.y-input.is-ok {
+  border-color: var(--ok);
+  box-shadow: 0 0 0 3px rgba(127, 183, 126, 0.16);
+}
+
+.y-field.is-ok .y-input-icon {
+  color: var(--ok);
+}
+
+/* Estado de Erro (--err #E07A68) */
+.y-field.is-err .y-input,
+.y-input.is-err {
+  border-color: var(--err);
+  box-shadow: 0 0 0 3px rgba(224, 122, 104, 0.18);
+}
+
+.y-field.is-err .y-input-icon {
+  color: var(--err);
+}
+
+.y-field__msg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.y-field__msg--err {
+  color: var(--err);
+}
+
+.y-field__msg--ok {
+  color: var(--ok);
+}
+
+/* ==========================================================================
+   CARDS E SUPERFÍCIES (Raio 20px, Fundo --surface, Borda --line)
+   ========================================================================== */
+.y-card {
+  position: relative;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition:
+    border-color var(--dur-base) var(--ease-smooth),
+    transform var(--dur-base) var(--ease-spring);
+}
+
+.y-card--interactive:hover {
+  border-color: var(--copper-border-hi);
+  transform: translateY(-3px);
+}
+
+/* Card com halo Champagne suave no topo */
+.y-card--glow {
+  background-image: var(--card-radial-glow);
+  border-color: var(--copper-border);
+}
+
+/* Superfície clara Yoha (--cream-2 #EFE4CE / #F3F1E8 com marrom cacau #5A432E e preto #231F20) */
+.y-card--cream {
+  background-color: var(--cream-2);
+  border-color: rgba(90, 67, 46, 0.2);
+  color: var(--yoha-charcoal);
+}
+
+.y-card--cream .y-h3,
+.y-card--cream .y-h4 {
+  color: var(--copper-deep);
+}
+
+.y-card--cream .y-label {
+  color: var(--copper-deep);
+}
+
+.y-card--cream .y-body {
+  color: #3D2E22;
+}
+
+/* Card de Produto estilo Loja Oficial (vivayoha.com.br) */
+.y-prod-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--dur-base) var(--ease-spring), border-color var(--dur-base);
+}
+
+.y-prod-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--copper-border-hi);
+}
+
+.y-prod-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 50% 40%, rgba(231, 211, 176, 0.12), #12100E);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.y-prod-card__media img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.y-prod-card:hover .y-prod-card__media img {
+  transform: scale(1.06);
+}
+
+.y-prod-card__tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--cream-2);
+  color: #171411;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.y-prod-card__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Ícone emoldurado dentro do card */
+.y-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(231, 211, 176, 0.08);
+  border: 1px solid var(--copper-border);
+  color: var(--copper);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   COMPONENTES DE CONVERSÃO BLACK YOHA (COUNTDOWN REAL DO SITE, LOTE, TICKER)
+   ========================================================================== */
+
+/* Ticker / Faixa de anúncio contínua (inspirada na .annoucement_bar__container #231F20 do site) */
+.y-ticker {
+  width: 100%;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  user-select: none;
+}
+
+.y-ticker__track {
+  display: flex;
+  width: max-content;
+  gap: 28px;
+  animation: y-marquee 28s linear infinite;
+}
+
+.y-ticker:hover .y-ticker__track {
+  animation-play-state: paused;
+}
+
+.y-ticker__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.y-ticker__item b {
+  color: var(--cream);
+}
+
+.y-ticker__sep {
+  color: var(--copper);
+  font-size: 10px;
+}
+
+@keyframes y-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Countdown Timer — Inspirado no #countdown-bar oficial de vivayoha.com.br
+   (blocos pretos #000000 com borda 1.5px solid #E7D3B0 e números #E7D3B0) */
+.y-countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.y-countdown__unit {
+  background: #0A0908;
+  border: 1.5px solid var(--copper);
+  border-radius: 10px;
+  padding: 12px 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 10px rgba(231, 211, 176, 0.10);
+}
+
+.y-countdown__val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(22px, 6vw, 30px);
+  line-height: 1;
+  color: var(--copper);
+  font-variant-numeric: tabular-nums;
+}
+
+.y-countdown__lbl {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.82;
+}
+
+/* Barra de ocupação de Lote / Grupo VIP */
+.y-meter {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.y-meter__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.y-meter__head strong {
+  color: var(--copper);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.y-meter__track {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-chip);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.y-meter__fill {
+  height: 100%;
+  border-radius: var(--radius-chip);
+  background: linear-gradient(90deg, var(--bronze) 0%, var(--copper) 100%);
+  transition: width 0.8s var(--ease-out-expo);
+}
+
+.y-meter__fill--ok {
+  background: linear-gradient(90deg, #5A9E59 0%, var(--ok) 100%);
+}
+
+/* Acordeão / FAQ */
+.y-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.y-faq__item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: border-color var(--dur-fast) var(--ease-smooth);
+}
+
+.y-faq__item[open] {
+  border-color: var(--copper-border-hi);
+}
+
+.y-faq__summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 18px 20px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--cream);
+  user-select: none;
+}
+
+.y-faq__summary::-webkit-details-marker {
+  display: none;
+}
+
+.y-faq__icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--copper);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: transform var(--dur-base) var(--ease-spring), background-color var(--dur-fast);
+}
+
+.y-faq__item[open] .y-faq__icon {
+  transform: rotate(45deg);
+  background: rgba(231, 211, 176, 0.14);
+  border-color: var(--copper-border-hi);
+}
+
+.y-faq__body {
+  padding: 0 20px 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+
+/* Animação Reveal */
+.y-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--dur-slow) var(--ease-out-expo),
+    transform var(--dur-slow) var(--ease-out-expo);
+}
+
+.y-reveal.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .y-ticker__track {
+    animation: y-marquee 22s linear infinite !important;
+  }
+  .y-dot-live {
+    animation: y-pulse-sand 2s infinite !important;
+  }
+  .y-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

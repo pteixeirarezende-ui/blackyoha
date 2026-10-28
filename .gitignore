@@ -1,0 +1,8 @@
+# Dependências / Scratch
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Referências brutas baixadas para estudo (manter repo limpo e leve)
+referencias/
