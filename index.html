@@ -109,13 +109,13 @@
     }
 
     /* ------------------------------------------------------------------------
-       2. TOPO LIMPO COM LOGOMARCA OFICIAL YOHA (Sem tarja fixa poluída)
+       2. TOPO LIMPO COM LOGOMARCA OFICIAL YOHA + STATUS AO VIVO
        ------------------------------------------------------------------------ */
     .pos-top-brand {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     .pos-logo-img {
@@ -124,7 +124,61 @@
       display: block;
     }
 
-    /* Botão CTA Padrão Estilo Positive Co. */
+    /* Pílula de Status Ao Vivo (Urgência & Charme Premium) */
+    .pos-live-pill {
+      background: rgba(231, 211, 176, 0.08);
+      border: 1px solid rgba(231, 211, 176, 0.32);
+      color: var(--pos-accent);
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
+
+    .pos-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #25D366;
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      animation: pos-pulse-dot 1.8s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pos-pulse-dot {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.75);
+      }
+      70% {
+        box-shadow: 0 0 0 7px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* Linha de Tag em Destaque */
+    .pos-badge-line {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--pos-accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    /* Botão CTA Padrão Estilo Positive Co. com Efeito Shimmer */
     .pos-cta {
       background: var(--pos-accent);
       color: #0E0C0A;
@@ -142,14 +196,41 @@
       justify-content: center;
       gap: 10px;
       cursor: pointer;
-      transition: filter 0.2s, transform 0.2s, background-color 0.2s;
+      transition: filter 0.2s, transform 0.2s, background-color 0.2s, box-shadow 0.2s;
       text-align: center;
       width: 100%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 28px -6px rgba(231, 211, 176, 0.28), 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .pos-cta::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 45%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.42),
+        transparent
+      );
+      transform: rotate(25deg);
+      animation: pos-cta-shimmer 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes pos-cta-shimmer {
+      0%, 15% { left: -60%; }
+      40%, 100% { left: 140%; }
     }
 
     .pos-cta:hover {
-      filter: brightness(1.07);
-      transform: translateY(-1px);
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px -4px rgba(231, 211, 176, 0.42), 0 4px 12px rgba(0, 0, 0, 0.6);
     }
 
     .pos-cta svg {
@@ -157,6 +238,13 @@
       height: 22px;
       flex-shrink: 0;
       transition: transform 0.2s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pos-cta span {
+      position: relative;
+      z-index: 2;
     }
 
     .pos-cta:hover svg {
@@ -166,6 +254,11 @@
     .pos-cta--white {
       background: var(--pos-white);
       color: #0E0C0A;
+      box-shadow: 0 10px 28px -6px rgba(243, 241, 232, 0.25), 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .pos-cta--white:hover {
+      box-shadow: 0 14px 34px -4px rgba(243, 241, 232, 0.38), 0 4px 12px rgba(0, 0, 0, 0.6);
     }
 
     /* ------------------------------------------------------------------------
@@ -322,6 +415,16 @@
       margin: 4px auto 18px;
     }
 
+    /* Brilho de iluminação luxuosa de estúdio atrás dos potes */
+    .pos-stage-glow {
+      position: absolute;
+      inset: -16px;
+      background: radial-gradient(circle at 50% 50%, rgba(231, 211, 176, 0.24) 0%, rgba(158, 131, 86, 0.10) 45%, transparent 72%);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(16px);
+    }
+
     /* Pills de benefícios (.benefit da Positive Co) */
     .pos-float-pills {
       display: flex;
@@ -344,20 +447,23 @@
       border-radius: 80px;
       white-space: nowrap;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      letter-spacing: 0.2px;
     }
 
     .pos-benefit-pill--outline {
       background: rgba(21, 18, 15, 0.9);
       color: var(--pos-accent);
       border: 1px solid var(--pos-accent);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
     }
 
     .pos-stage-img-wrap {
       position: relative;
+      z-index: 2;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid var(--copper-border);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
     }
 
     .pos-stage-img-wrap img {
@@ -368,11 +474,28 @@
 
     .pos-hero__sub {
       font-size: 15.5px;
-      line-height: 1.4;
+      line-height: 1.45;
       color: var(--pos-white);
       opacity: 0.92;
-      max-width: 34ch;
-      margin-bottom: 18px;
+      max-width: 36ch;
+      margin-bottom: 16px;
+    }
+
+    /* Micro-garantias Hero */
+    .pos-hero-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: var(--muted);
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    .pos-hero-trust__sep {
+      opacity: 0.4;
     }
 
     /* ------------------------------------------------------------------------
@@ -382,11 +505,19 @@
     .pos-brands {
       position: relative;
       background: #0A0908;
-      padding: 28px 16px 58px;
+      padding: 38px 16px 58px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 24px;
+    }
+
+    .pos-brands__header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
     }
 
     .pos-brands__title {
@@ -398,6 +529,13 @@
       text-align: center;
       color: var(--pos-white);
       max-width: 16ch;
+    }
+
+    .pos-brands__sub {
+      font-size: 14.5px;
+      color: var(--muted);
+      max-width: 32ch;
+      line-height: 1.4;
     }
 
     .pos-brand-rail {
@@ -420,12 +558,13 @@
       justify-content: space-between;
       padding: 12px 10px 14px;
       isolation: isolate;
-      transition: transform 0.3s var(--ease-spring), border-color 0.3s;
+      transition: transform 0.3s var(--ease-spring), border-color 0.3s, box-shadow 0.3s;
     }
 
     .pos-brand-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: var(--pos-accent);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(231, 211, 176, 0.35);
     }
 
     .pos-brand-card__photo {
@@ -457,7 +596,7 @@
         rgba(10, 9, 8, 0.72) 0%,
         rgba(10, 9, 8, 0.18) 38%,
         rgba(10, 9, 8, 0.45) 65%,
-        rgba(10, 9, 8, 0.92) 100%
+        rgba(10, 9, 8, 0.94) 100%
       );
     }
 
@@ -499,6 +638,17 @@
       text-transform: uppercase;
       color: var(--pos-white);
       text-shadow: 0 4px 16px rgba(0, 0, 0, 0.85);
+    }
+
+    .pos-brand-card__desc {
+      font-size: 11px;
+      color: var(--pos-accent);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      line-height: 1.25;
+      opacity: 0.95;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      margin-top: 2px;
     }
 
     .pos-brand-card__cta {
@@ -799,13 +949,128 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    .pos-form-micro {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: 14px;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
     /* ------------------------------------------------------------------------
-       7. RODAPÉ OFICIAL YOHA
+       7. FAQ DE QUEBRA DE OBJEÇÕES (Acordeão estilo Editorial Yoha)
+       ------------------------------------------------------------------------ */
+    .pos-faq {
+      background: #0A0908;
+      border-top: 1px solid var(--line);
+      padding: 56px 16px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .pos-faq__inner {
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .pos-faq__header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pos-faq__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(26px, 7vw, 36px);
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: var(--pos-white);
+    }
+
+    .pos-faq__sub {
+      font-size: 14.5px;
+      color: var(--muted);
+      max-width: 36ch;
+      line-height: 1.45;
+    }
+
+    .pos-faq__list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pos-faq__item {
+      background: #14110E;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.25s, background-color 0.25s;
+    }
+
+    .pos-faq__item[open] {
+      border-color: rgba(231, 211, 176, 0.4);
+      background: #181411;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .pos-faq__q {
+      list-style: none;
+      padding: 18px 20px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15.5px;
+      color: var(--pos-white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+    }
+
+    .pos-faq__q::-webkit-details-marker {
+      display: none;
+    }
+
+    .pos-faq__icon {
+      font-size: 22px;
+      line-height: 1;
+      color: var(--pos-accent);
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+      font-weight: 300;
+    }
+
+    .pos-faq__item[open] .pos-faq__icon {
+      transform: rotate(45deg);
+    }
+
+    .pos-faq__a {
+      padding: 0 20px 20px;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 14px;
+    }
+
+    /* ------------------------------------------------------------------------
+       8. RODAPÉ OFICIAL YOHA
        ------------------------------------------------------------------------ */
     .pos-footer {
       background: #070605;
       border-top: 1px solid var(--line);
-      padding: 32px 16px 40px;
+      padding: 36px 16px 44px;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -834,7 +1099,10 @@
         max-width: 620px;
       }
       .pos-signup-card {
-        padding: 32px 28px;
+        padding: 34px 30px;
+      }
+      .pos-faq__inner {
+        max-width: 680px;
       }
     }
   </style>
@@ -886,6 +1154,12 @@
           <img src="assets/yoha-logo-branca.webp" alt="yoha" class="pos-logo-img" width="160" height="62">
         </div>
 
+        <!-- Status Ao Vivo (Urgência & Charme Premium) -->
+        <div class="pos-live-pill" aria-label="Acesso Antecipado Ativo">
+          <span class="pos-live-dot" aria-hidden="true"></span>
+          <span>ESQUENTA BLACK FRIDAY · VAGAS LIBERADAS</span>
+        </div>
+
         <!-- Selo opcional controlado por OFFER_TEXT -->
         <div id="offer-badge" class="y-chip y-chip--cream" style="margin-bottom:10px;" hidden></div>
 
@@ -896,16 +1170,18 @@
         </div>
 
         <h1 class="pos-hero__title" id="hero-title">
-          Descontos exclusivos em <span class="hl">Whey, Creatina, Biotina</span> e <span class="hl">Encapsulados</span>
+          Os maiores descontos do ano em <span class="hl">Whey, Creatina, Biotina</span> e <span class="hl">Encapsulados</span>
         </h1>
 
         <!-- Palco de Produtos + Pills de Benefícios (Sem sobreposição) -->
         <div class="pos-stage-box">
+          <div class="pos-stage-glow" aria-hidden="true"></div>
+
           <div class="pos-float-pills" aria-hidden="true">
-            <span class="pos-benefit-pill">+ Ofertas Exclusivas</span>
-            <span class="pos-benefit-pill pos-benefit-pill--outline">+ Vantagens</span>
-            <span class="pos-benefit-pill pos-benefit-pill--outline">+ Super Descontos</span>
-            <span class="pos-benefit-pill">+ Combos VIP</span>
+            <span class="pos-benefit-pill">🔥 + Ofertas Secretas</span>
+            <span class="pos-benefit-pill pos-benefit-pill--outline">⚡ + Acesso Antecipado</span>
+            <span class="pos-benefit-pill pos-benefit-pill--outline">📦 + Estoque Garantido</span>
+            <span class="pos-benefit-pill">🎁 + Brindes Exclusivos</span>
           </div>
 
           <div class="pos-stage-img-wrap">
@@ -921,13 +1197,21 @@
         </div>
 
         <p class="pos-hero__sub">
-          Entre para a lista VIP e receba acesso antecipado às novidades e ofertas exclusivas da Black Friday.
+          Entre para a lista VIP e garanta acesso antecipado às maiores ofertas da história da Yoha direto no WhatsApp, antes de abrir ao público.
         </p>
 
         <a href="#cadastro" class="pos-cta js-go-signup">
-          <span>Entrar na lista VIP</span>
+          <span>Quero entrar na lista VIP</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
+
+        <div class="pos-hero-trust" aria-label="Garantias de acesso">
+          <span>🔒 100% gratuito</span>
+          <span class="pos-hero-trust__sep">·</span>
+          <span>⚡ Apenas a Yoha posta</span>
+          <span class="pos-hero-trust__sep">·</span>
+          <span>🚪 Sai quando quiser</span>
+        </div>
       </div>
     </section>
 
@@ -935,9 +1219,15 @@
          DOBRA 2: "SEU ACESSO À BLACK FRIDAY COMEÇA AQUI" (4 Cards Interativos)
          ====================================================================== -->
     <section class="pos-brands" aria-labelledby="brands-title">
-      <h2 class="pos-brands__title" id="brands-title">
-        Seu acesso à Black Friday começa aqui
-      </h2>
+      <div class="pos-brands__header">
+        <span class="pos-badge-line">✦ EXCLUSIVIDADE NO GRUPO VIP ✦</span>
+        <h2 class="pos-brands__title" id="brands-title">
+          Seu acesso à Black Friday começa aqui
+        </h2>
+        <p class="pos-brands__sub">
+          Os estoques mais disputados do ano liberados primeiro para você
+        </p>
+      </div>
 
       <div class="pos-brand-rail">
         <!-- Card 1: Whey -->
@@ -947,12 +1237,13 @@
           </div>
           <div class="pos-brand-card__shade" aria-hidden="true"></div>
           <div class="pos-brand-card__top">
-            <span class="pos-brand-card__tag">+ Ofertas Exclusivas</span>
+            <span class="pos-brand-card__tag">👑 Mais Disputado</span>
           </div>
           <div class="pos-brand-card__center">
             <span class="pos-brand-card__name">100% Whey Protein</span>
+            <span class="pos-brand-card__desc">Condição inédita em potes e combos</span>
           </div>
-          <span class="pos-brand-card__cta">Entre na lista VIP</span>
+          <span class="pos-brand-card__cta">Entrar na lista VIP</span>
         </a>
 
         <!-- Card 2: Creatina -->
@@ -962,12 +1253,13 @@
           </div>
           <div class="pos-brand-card__shade" aria-hidden="true"></div>
           <div class="pos-brand-card__top">
-            <span class="pos-brand-card__tag">+ Combos Especiais</span>
+            <span class="pos-brand-card__tag">⚡ Edição Gourmet</span>
           </div>
           <div class="pos-brand-card__center">
             <span class="pos-brand-card__name">Creatina Gourmet</span>
+            <span class="pos-brand-card__desc">Preço especial de pré-venda</span>
           </div>
-          <span class="pos-brand-card__cta">Entre na lista VIP</span>
+          <span class="pos-brand-card__cta">Entrar na lista VIP</span>
         </a>
 
         <!-- Card 3: Biotina -->
@@ -977,12 +1269,13 @@
           </div>
           <div class="pos-brand-card__shade" aria-hidden="true"></div>
           <div class="pos-brand-card__top">
-            <span class="pos-brand-card__tag">+ Kit Beleza VIP</span>
+            <span class="pos-brand-card__tag">✨ 600 Doses / Dia</span>
           </div>
           <div class="pos-brand-card__center">
             <span class="pos-brand-card__name">Biotina Drops</span>
+            <span class="pos-brand-card__desc">Tratamento capilar com valor do grupo</span>
           </div>
-          <span class="pos-brand-card__cta">Entre na lista VIP</span>
+          <span class="pos-brand-card__cta">Entrar na lista VIP</span>
         </a>
 
         <!-- Card 4: Encapsulados -->
@@ -992,17 +1285,18 @@
           </div>
           <div class="pos-brand-card__shade" aria-hidden="true"></div>
           <div class="pos-brand-card__top">
-            <span class="pos-brand-card__tag">+ Super Descontos</span>
+            <span class="pos-brand-card__tag">💎 Kits de Tratamento</span>
           </div>
           <div class="pos-brand-card__center">
             <span class="pos-brand-card__name">Encapsulados</span>
+            <span class="pos-brand-card__desc">Ácido Hialurônico e colágeno com bônus</span>
           </div>
-          <span class="pos-brand-card__cta">Entre na lista VIP</span>
+          <span class="pos-brand-card__cta">Entrar na lista VIP</span>
         </a>
       </div>
 
       <a href="#cadastro" class="pos-cta pos-cta--white pos-brands__bottom-cta js-go-signup">
-        <span>Entrar na lista VIP</span>
+        <span>Garantir minha vaga VIP</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </section>
@@ -1034,21 +1328,24 @@
          ====================================================================== -->
     <section class="pos-signup" id="cadastro" aria-labelledby="signup-title">
       <div class="pos-signup__inner">
-        <h2 class="pos-signup__title" id="signup-title">
-          Participe do esquenta e <span>receba ofertas primeiro</span>
-        </h2>
+        <div class="pos-brands__header">
+          <span class="pos-badge-line">✦ LOTE 01 VIP · VAGAS LIMITADAS ✦</span>
+          <h2 class="pos-signup__title" id="signup-title">
+            Participe do esquenta e <span>receba ofertas primeiro</span>
+          </h2>
+        </div>
 
         <div class="pos-signup-card" id="form-container">
           <!-- ETAPA 1: FORMULÁRIO -->
           <div id="step-1-wrap">
             <div class="pos-perks">
-              <span>Acesso antecipado</span>
-              <span>Ofertas exclusivas</span>
-              <span>SUPER DESCONTOS</span>
+              <span>⚡ Acesso antecipado</span>
+              <span>🔥 Maior desconto do ano</span>
+              <span>🎁 Brindes exclusivos</span>
             </div>
 
             <p class="pos-signup-lead">
-              Inscreva-se e garanta seu acesso ao Grupo VIP para levar seus favoritos da Yoha com as melhores condições do ano!
+              Inscreva-se gratuitamente para receber o link exclusivo do Grupo VIP e garantir seus favoritos com as melhores condições da história da Yoha.
             </p>
 
             <form id="vip-form" class="pos-form" novalidate>
@@ -1121,10 +1418,14 @@
               </div>
 
               <button type="submit" id="btn-submit" class="pos-cta pos-cta--white">
-                <span id="btn-submit-label">Entrar na lista VIP</span>
+                <span id="btn-submit-label">Quero entrar na lista VIP</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </button>
             </form>
+
+            <p class="pos-form-micro">
+              🔒 Seus dados estão 100% seguros com a Yoha · Sem spam · Leva 10 segundos
+            </p>
           </div>
 
           <!-- ETAPA 2: CONFIRMAÇÃO + REDIRECIONAMENTO AO GRUPO VIP -->
@@ -1134,7 +1435,7 @@
             </div>
             <h3>Você está na lista VIP!</h3>
             <p>
-              Sua inscrição na Black Friday Yoha foi confirmada. Entre agora no grupo oficial para receber as novidades e ofertas exclusivas em primeira mão.
+              Sua vaga foi confirmada com sucesso. Toque no botão abaixo para entrar agora no grupo oficial e garantir o maior desconto do ano em primeira mão.
             </p>
             <p class="pos-confirmation__timer">
               Você será redirecionado ao grupo VIP no WhatsApp em <strong id="redirect-seconds">15</strong> segundos.
@@ -1149,6 +1450,61 @@
               <span>Entrar no grupo VIP agora</span>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FAQ DE QUEBRA DE OBJEÇÕES (Acordeão Editorial Yoha)
+         ====================================================================== -->
+    <section class="pos-faq" aria-labelledby="faq-title">
+      <div class="pos-faq__inner">
+        <div class="pos-faq__header">
+          <span class="pos-badge-line">✦ TIRE SUAS DÚVIDAS ✦</span>
+          <h2 class="pos-faq__title" id="faq-title">Dúvidas Frequentes</h2>
+          <p class="pos-faq__sub">Tudo o que você precisa saber sobre o Grupo VIP da Black Yoha</p>
+        </div>
+
+        <div class="pos-faq__list">
+          <details class="pos-faq__item" open>
+            <summary class="pos-faq__q">
+              <span>Preciso pagar para entrar no grupo VIP?</span>
+              <span class="pos-faq__icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="pos-faq__a">
+              <p>Não. A entrada na Lista VIP e no grupo oficial do WhatsApp é 100% gratuita. Você só compra os produtos se desejar quando as ofertas exclusivas forem liberadas.</p>
+            </div>
+          </details>
+
+          <details class="pos-faq__item">
+            <summary class="pos-faq__q">
+              <span>Vocês mandam mensagens o dia todo?</span>
+              <span class="pos-faq__icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="pos-faq__a">
+              <p>Não! O grupo é totalmente silencioso e bloqueado para conversas paralelas. Apenas a equipe oficial da Yoha enviará mensagens com os links das ofertas, novidades e cupons da Black Friday.</p>
+            </div>
+          </details>
+
+          <details class="pos-faq__item">
+            <summary class="pos-faq__q">
+              <span>Posso sair do grupo quando quiser?</span>
+              <span class="pos-faq__icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="pos-faq__a">
+              <p>Sim, com total liberdade. Você pode silenciar ou sair do grupo a qualquer momento diretamente pelo WhatsApp com apenas um toque.</p>
+            </div>
+          </details>
+
+          <details class="pos-faq__item">
+            <summary class="pos-faq__q">
+              <span>Qual é a vantagem real de estar no grupo?</span>
+              <span class="pos-faq__icon" aria-hidden="true">+</span>
+            </summary>
+            <div class="pos-faq__a">
+              <p>Quem está no grupo recebe os links com acesso antecipado antes de abrir para o público geral, garantindo condições exclusivas e estoques dos produtos mais disputados que costumam esgotar rápido.</p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
