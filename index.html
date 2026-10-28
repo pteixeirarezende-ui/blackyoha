@@ -277,7 +277,7 @@
       background:
         radial-gradient(540px 380px at 50% 42%, rgba(231, 211, 176, 0.20), rgba(158, 131, 86, 0.08) 52%, transparent 76%),
         linear-gradient(180deg, #0A0908 0%, #0E0C0A 100%);
-      padding: 26px 16px 42px;
+      padding: 24px 12px 38px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -288,7 +288,7 @@
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 440px;
+      max-width: 480px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -419,7 +419,7 @@
     .pos-stage-box {
       position: relative;
       width: 100%;
-      max-width: 390px;
+      max-width: 100%;
       margin: 4px auto 18px;
     }
 
@@ -1109,6 +1109,15 @@
 
     /* Responsividade Desktop (> 768px) */
     @media (min-width: 768px) {
+      .pos-hero {
+        padding: 36px 20px 48px;
+      }
+      .pos-hero__inner {
+        max-width: 760px;
+      }
+      .pos-stage-box {
+        max-width: 720px;
+      }
       .pos-brand-rail {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
@@ -1209,8 +1218,8 @@
               <img
                 src="assets/hero-black-yoha.png"
                 alt="Ofertas e Kits Exclusivos Black Yoha - Linha completa de suplementos"
-                width="900"
-                height="587"
+                width="1600"
+                height="1043"
                 fetchpriority="high"
                 decoding="async"
               >
