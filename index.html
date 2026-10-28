@@ -29,7 +29,7 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 96px;
+      scroll-padding-top: 24px;
     }
 
     body {
@@ -109,87 +109,19 @@
     }
 
     /* ------------------------------------------------------------------------
-       2. HEADER STICKY (.pos-header) — Com Logomarca Oficial Branca
+       2. TOPO LIMPO COM LOGOMARCA OFICIAL YOHA (Sem tarja fixa poluída)
        ------------------------------------------------------------------------ */
-    .pos-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: rgba(10, 9, 8, 0.94);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-      padding: 12px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pos-header__top {
-      width: 100%;
-      max-width: 1160px;
+    .pos-top-brand {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .pos-logo-link {
-      display: inline-flex;
-      align-items: center;
-      flex-shrink: 0;
+      justify-content: center;
+      margin-bottom: 18px;
     }
 
     .pos-logo-img {
-      height: 28px;
+      height: 32px;
       width: auto;
       display: block;
-    }
-
-    .pos-header__cats {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .pos-header__cats::-webkit-scrollbar {
-      display: none;
-    }
-
-    .pos-header__cat {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      white-space: nowrap;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    .pos-header__cat:hover {
-      color: var(--pos-white);
-      border-color: var(--pos-accent);
-    }
-
-    .pos-header__actions {
-      width: 100%;
-      max-width: 600px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .pos-header__actions p {
-      display: none;
-      font-size: 13.5px;
-      color: var(--muted);
     }
 
     /* Botão CTA Padrão Estilo Positive Co. */
@@ -234,14 +166,6 @@
     .pos-cta--white {
       background: var(--pos-white);
       color: #0E0C0A;
-    }
-
-    .pos-cta--header {
-      min-height: 40px;
-      height: 40px;
-      font-size: 14px;
-      border-radius: 10px;
-      padding: 6px 14px;
     }
 
     /* ------------------------------------------------------------------------
@@ -390,22 +314,21 @@
       color: var(--pos-accent);
     }
 
-    /* Palco Central de Produtos + Pills Flutuantes + Selo Giratório Esquenta */
+    /* Palco Central de Produtos + Pills de Benefícios */
     .pos-stage-box {
       position: relative;
       width: 100%;
       max-width: 390px;
-      margin: 2px auto 18px;
-      padding-top: 26px;
+      margin: 4px auto 18px;
     }
 
-    /* Pills de benefícios flutuantes (.benefit da Positive Co) */
+    /* Pills de benefícios (.benefit da Positive Co) */
     .pos-float-pills {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 6px;
-      margin-bottom: 10px;
+      gap: 8px;
+      margin-bottom: 14px;
       position: relative;
       z-index: 4;
     }
@@ -417,7 +340,7 @@
       font-weight: 800;
       font-size: 12px;
       line-height: 1;
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 80px;
       white-space: nowrap;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
@@ -427,36 +350,6 @@
       background: rgba(21, 18, 15, 0.9);
       color: var(--pos-accent);
       border: 1px solid var(--pos-accent);
-    }
-
-    /* Selo Giratório "ESQUENTA BLACK FRIDAY" */
-    .pos-esquenta-seal {
-      position: absolute;
-      top: -6px;
-      right: 4px;
-      width: 84px;
-      height: 84px;
-      z-index: 5;
-      display: grid;
-      place-items: center;
-      pointer-events: none;
-    }
-
-    .pos-esquenta-seal__ring {
-      width: 100%;
-      height: 100%;
-      animation: pos-spin 11s linear infinite;
-    }
-
-    .pos-esquenta-seal__center {
-      position: absolute;
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 10px;
-      line-height: 1.05;
-      text-align: center;
-      text-transform: uppercase;
-      color: var(--pos-accent);
     }
 
     .pos-stage-img-wrap {
@@ -907,37 +800,8 @@
     }
 
     /* ------------------------------------------------------------------------
-       7. LEMBRETE DE CAPTURA & RODAPÉ OFICIAL YOHA
+       7. RODAPÉ OFICIAL YOHA
        ------------------------------------------------------------------------ */
-    .pos-reminder {
-      background: #0A0908;
-      padding: 24px 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .pos-reminder__card {
-      max-width: 520px;
-      margin: 0 auto;
-      background: #181411;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 24px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 16px;
-    }
-
-    .pos-reminder__card h2 {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 24px;
-      line-height: 1.06;
-      text-transform: uppercase;
-      max-width: 16ch;
-    }
-
     .pos-footer {
       background: #070605;
       border-top: 1px solid var(--line);
@@ -962,24 +826,6 @@
 
     /* Responsividade Desktop (> 768px) */
     @media (min-width: 768px) {
-      .pos-header {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 14px 40px;
-      }
-      .pos-header__top {
-        width: auto;
-        gap: 28px;
-      }
-      .pos-header__actions {
-        width: auto;
-      }
-      .pos-header__actions p {
-        display: block;
-      }
-      .pos-cta--header {
-        width: auto;
-      }
       .pos-brand-rail {
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
@@ -1017,34 +863,10 @@
     </div>
   </div>
 
-  <!-- ========================================================================
-       HEADER STICKY COM LOGOMARCA OFICIAL BRANCA DA YOHA
-       ======================================================================== -->
-  <header class="pos-header">
-    <div class="pos-header__top">
-      <a href="#topo" class="pos-logo-link" aria-label="Yoha">
-        <img src="assets/yoha-logo-branca.webp" alt="yoha" class="pos-logo-img" width="160" height="62">
-      </a>
-      <nav class="pos-header__cats" aria-label="Linhas Yoha">
-        <a href="#linha-whey" class="pos-header__cat">Whey</a>
-        <a href="#linha-creatina" class="pos-header__cat">Creatina</a>
-        <a href="#linha-biotina" class="pos-header__cat">Biotina</a>
-        <a href="#linha-encapsulados" class="pos-header__cat">Encapsulados</a>
-      </nav>
-    </div>
-    <div class="pos-header__actions">
-      <p>Entre na lista VIP e receba acesso antecipado!</p>
-      <a href="#cadastro" class="pos-cta pos-cta--white pos-cta--header js-go-signup">
-        <span>Entrar na lista VIP</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </header>
-
   <main id="topo">
 
     <!-- ======================================================================
-         DOBRA 1: HERO PALCO (+BLACK + PRODUTOS + PILLS + SELO GIRATÓRIO)
+         DOBRA 1: HERO PALCO (+BLACK + PRODUTOS + PILLS)
          ====================================================================== -->
     <section class="pos-hero" aria-labelledby="hero-title">
       <!-- Cruzes Geométricas Vazadas de Fundo (Pegada Positive Co) -->
@@ -1059,6 +881,11 @@
       </svg>
 
       <div class="pos-hero__inner">
+        <!-- Logomarca Oficial Yoha no Topo -->
+        <div class="pos-top-brand">
+          <img src="assets/yoha-logo-branca.webp" alt="yoha" class="pos-logo-img" width="160" height="62">
+        </div>
+
         <!-- Selo opcional controlado por OFFER_TEXT -->
         <div id="offer-badge" class="y-chip y-chip--cream" style="margin-bottom:10px;" hidden></div>
 
@@ -1072,22 +899,8 @@
           Descontos exclusivos em <span class="hl">Whey, Creatina, Biotina</span> e <span class="hl">Encapsulados</span>
         </h1>
 
-        <!-- Palco de Produtos + Pills Flutuantes + Selo Esquenta -->
+        <!-- Palco de Produtos + Pills de Benefícios (Sem sobreposição) -->
         <div class="pos-stage-box">
-          <!-- Selo Giratório Esquenta -->
-          <div class="pos-esquenta-seal" aria-hidden="true">
-            <svg class="pos-esquenta-seal__ring" viewBox="0 0 120 120">
-              <defs>
-                <path id="esquentaCircle" d="M 60, 60 m -46, 0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0"/>
-              </defs>
-              <circle cx="60" cy="60" r="56" fill="#0E0C0A" stroke="#E7D3B0" stroke-width="1.5"/>
-              <text fill="#F3F1E8" font-size="9.5" font-weight="800" letter-spacing="2.1">
-                <textPath href="#esquentaCircle">ESQUENTA BLACK • LISTA VIP YOHA •</textPath>
-              </text>
-            </svg>
-            <span class="pos-esquenta-seal__center">ACESSO<br>VIP 🔥</span>
-          </div>
-
           <div class="pos-float-pills" aria-hidden="true">
             <span class="pos-benefit-pill">+ Ofertas Exclusivas</span>
             <span class="pos-benefit-pill pos-benefit-pill--outline">+ Vantagens</span>
@@ -1342,17 +1155,7 @@
 
   </main>
 
-  <!-- Card Lembrete Final + Rodapé com Logomarca Oficial Yoha -->
-  <div class="pos-reminder">
-    <aside class="pos-reminder__card">
-      <h2>Garanta seu acesso à Black Friday Yoha</h2>
-      <a href="#cadastro" class="pos-cta pos-cta--white js-go-signup">
-        <span>Entrar na lista VIP</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </aside>
-  </div>
-
+  <!-- Rodapé com Logomarca Oficial Yoha -->
   <footer class="pos-footer">
     <img src="assets/yoha-logo-branca.webp" alt="yoha" class="pos-footer__logo" width="160" height="62" loading="lazy">
     <p class="pos-footer__copy">© 2026 Yoha · Black Friday</p>
