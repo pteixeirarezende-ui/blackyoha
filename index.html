@@ -461,11 +461,26 @@
        ------------------------------------------------------------------------ */
     .pos-features {
       position: relative;
-      padding: 48px 20px 56px;
+      padding: 56px 20px 64px;
       text-align: center;
       z-index: 10;
-      background:
-        radial-gradient(ellipse 80% 420px at 50% 18%, rgba(164, 106, 56, 0.22) 0%, rgba(88, 52, 24, 0.08) 55%, transparent 80%);
+      overflow: hidden;
+    }
+
+    /* Textura de chocolate fluida limpa de estúdio (sem texto, sem cortes retos) */
+    .pos-features__chocolate-bg {
+      position: absolute;
+      inset: -50px 0;
+      background-image: url('assets/chocolate-texture-clean.webp');
+      background-position: center 20%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0.58;
+      filter: contrast(1.12) brightness(1.15);
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(180deg, transparent 0%, black 12%, black 86%, transparent 100%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 12%, black 86%, transparent 100%);
     }
 
     .pos-features__container {
@@ -1246,6 +1261,9 @@
          4. DOBRA 2: TEM COISA BOA VINDO AÍ (.pos-features)
          ====================================================================== -->
     <section class="pos-features" aria-labelledby="features-title">
+      <!-- Textura de chocolate fluida limpa de fundo -->
+      <div class="pos-features__chocolate-bg" aria-hidden="true"></div>
+
       <div class="pos-features__container">
         <span class="pos-eyebrow">✦ EXCLUSIVO NO GRUPO VIP ✦</span>
         <h2 class="pos-sec-heading" id="features-title">
