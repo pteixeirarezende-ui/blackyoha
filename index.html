@@ -1602,9 +1602,13 @@
         offerBadge.hidden = false;
       }
 
-      /* 2. Inicialização do Meta Pixel (PageView ao carregar) */
+      /* 2. Inicialização do Meta Pixel (PageView ao carregar se não injetado via GTM) */
       function initMetaPixel(pixelId) {
         if (!pixelId) return;
+        if (window.fbq && window.fbq.loaded) {
+          // Já inicializado pelo Google Tag Manager
+          return;
+        }
         !function (f, b, e, v, n, t, s) {
           if (f.fbq) return; n = f.fbq = function () {
             n.callMethod ?
@@ -1880,21 +1884,9 @@
         btnSubmit.disabled = true;
         btnSubmitLabel.textContent = 'Confirmando inscrição...';
 
-        /* Meta Pixel: Correspondência Avançada + Evento Lead com eventID */
+        /* Meta Pixel: Evento Lead com eventID */
         if (typeof window.fbq === 'function' && CONFIG.PIXEL_ID) {
-          var nameParts = rawNome.toLowerCase().split(/\s+/);
-          var firstName = nameParts[0] || '';
-          var lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
-          var phoneDigitsWithCountry = '55' + rawDigits;
-
           try {
-            window.fbq('init', CONFIG.PIXEL_ID, {
-              em: rawEmail,
-              ph: phoneDigitsWithCountry,
-              fn: firstName,
-              ln: lastName,
-              country: 'br'
-            });
             window.fbq('track', 'Lead', {
               content_name: 'Lista VIP Black Yoha',
               content_category: 'Black Friday VIP'
@@ -1945,7 +1937,17 @@
           }, 1000);
         }
 
-        /* Envio ao Webhook (CONFIG.ENDPOINT) */
+        /* Envio ao Webhook (CONFIG.ENDPOINT) de forma ágil com entrega garantida */
+        var hasRevealed = false;
+        function proceedToSuccess() {
+          if (hasRevealed) return;
+          hasRevealed = true;
+          revealSuccessState();
+        }
+
+        // Garante transição imediata (máximo 350ms) para que o lead nunca fique travado na tela
+        var fastTransitionTimer = setTimeout(proceedToSuccess, 350);
+
         if (CONFIG.ENDPOINT) {
           fetch(CONFIG.ENDPOINT, {
             method: 'POST',
@@ -1956,6 +1958,10 @@
             body: JSON.stringify(payload),
             keepalive: true
           })
+            .then(function () {
+              clearTimeout(fastTransitionTimer);
+              proceedToSuccess();
+            })
             .catch(function () {
               try {
                 fetch(CONFIG.ENDPOINT, {
@@ -1966,12 +1972,12 @@
                   keepalive: true
                 });
               } catch (e2) { }
-            })
-            .finally(function () {
-              revealSuccessState();
+              clearTimeout(fastTransitionTimer);
+              proceedToSuccess();
             });
         } else {
-          revealSuccessState();
+          clearTimeout(fastTransitionTimer);
+          proceedToSuccess();
         }
       });
 
